@@ -58,6 +58,10 @@
     loop_var: __subnet_name
   register: __private_subnet_info
 
+- name: Debug output
+  ansible.builtin.debug:
+    var: __private_subnet_info
+
 - name: Set fact with private subnet IDs
   ansible.builtin.set_fact:
     __subnet_ids: "{{ __private_subnet_info.subnets | map(attribute='id') | list }}"
