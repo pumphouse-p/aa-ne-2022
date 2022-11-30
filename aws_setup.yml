@@ -3,5 +3,5 @@
   hosts: localhost
   become: false
 
-  tasks:
-    - ansible.builtin.import_playbook: pumphouse_p.aa_ne.create_net
+  roles:
+    - name: pumphouse_p.aa_ne.aws_net
