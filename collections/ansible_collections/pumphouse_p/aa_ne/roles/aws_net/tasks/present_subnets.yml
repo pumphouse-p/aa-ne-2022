@@ -47,7 +47,7 @@
       - dest: 0.0.0.0/0
         gateway_id: "{{ __igw.gateway_id }}"
 
-- name: "Grab the ID(s) of the private subnets"
+- name: "Grab details of the private subnets"
   amazon.aws.ec2_vpc_subnet_info:
     filters:
       vpc-id: "{{ __vpc.vpcs.0.id }}"
@@ -58,11 +58,15 @@
     loop_var: __subnet_name
   register: __private_subnet_info
 
+- name: Set fact with private subnet IDs
+  ansible.builtin.set_fact:
+    __subnet_ids: "{{ __private_subnet_info.subnets | map(attribute='id') | list }}"
+
 - name: "Setup NAT gateways for private subnets"
   amazon.aws.ec2_vpc_nat_gateway:
     subnet_id: "{{ sub_id }}"
     region: "{{ aws_region }}"
     state: present
-  loop: "{{ __private_subnet_info.subnets | map(attribute='id') | list }}"
+  loop: "{{ __subnet_ids }}"
   loop_control:
     loop_var: sub_id
