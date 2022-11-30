@@ -46,3 +46,26 @@
     routes:
       - dest: 0.0.0.0/0
         gateway_id: "{{ __igw.gateway_id }}"
+
+- name: "Grab the ID(s) of the private subnets"
+  amazon.aws.ec2_vpc_subnet_info:
+    filters:
+      "tag:Name": "{{ __subnet_id }}"
+    region: "{{ aws_region }}"
+  loop: "{{ vpc.subnets | selectattr(!'map_public') | map(attribute('tags.Name')) | list }}"
+  loop_control:
+    loop_var: __subnet_id
+  register: __private_subnet_ids
+
+- name: Debug output
+  ansible.builtin.debug:
+    var: __private_subnet_ids
+
+- name: "Setup NAT gateways for private subnets"
+  amazon.aws.ec2_vpc_nat_gateway:
+    subnet_id: "{{ subnet_id.id }}"
+    region: "{{ aws_region }}"
+    state: present
+  loop: "{{ __private_subnet_ids.results }}"
+  loop_control:
+    loop_var: subnet_id
