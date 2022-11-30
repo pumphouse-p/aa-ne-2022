@@ -21,3 +21,4 @@ aws_net_vpcs:
         purge_tags: true
         tags:
           Name: "aa-ne-sub01"
+    internet_gateway: true

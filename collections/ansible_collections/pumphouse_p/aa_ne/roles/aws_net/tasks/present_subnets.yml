@@ -25,3 +25,12 @@
   loop: "{{ vpc.subnets }}"
   loop_control:
     loop_var: subnet
+
+- name: "Ensure internet gateway exists when enabled"
+  amazon.aws.ec2_vpc_igw:
+    purge_tags: "{{ vpc.purge_tags }}"
+    tags: "{{ __aws_net_default_tags }}"
+    vpc_id: "{{ __vpc.vpcs.0.id }}"
+    region: "{{ aws_region }}"
+    state: present
+  when: vpc.internet_gateway
