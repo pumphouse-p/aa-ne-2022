@@ -59,7 +59,7 @@
 
 - name: Debug output
   ansible.builtin.debug:
-    var: __private_subnet_ids
+    var: __private_subnet_ids.results
 
 - name: "Setup NAT gateways for private subnets"
   amazon.aws.ec2_vpc_nat_gateway:
