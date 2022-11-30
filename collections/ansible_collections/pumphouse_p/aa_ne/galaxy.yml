@@ -1,0 +1,16 @@
+---
+namespace: pumphouse_p
+name: skel
+version: 1.0.0
+readme: README.md
+authors:
+  - Devin Parrish (https://github.com/pumphouse-p)
+description: your collection description
+license_file: LICENSE
+tags: []
+dependencies: {}
+repository: https://github.com/pumphouse-p
+documentation: https://github.com/pumphouse-p
+homepage: https://github.com/pumphouse-p
+issues: https://github.com/pumphouse-p
+build_ignore: []

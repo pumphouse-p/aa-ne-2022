@@ -1,0 +1,23 @@
+---
+aws_region: "us-east-2"
+
+aws_net_vpcs:
+  - name: "aa-ne"
+    cidr_block: "10.10.0.0/16"
+    dns_hostnames: true
+    dns_support: true
+    purge_cidrs: true
+    purge_tags: true
+    multi_ok: false
+    tags: {}
+    subnets:
+      - cidr_block: "10.10.0.0/24"
+        map_public: true
+        purge_tags: true
+        tags:
+          Name: "aa-ne-sub00"
+      - cidr_block: "10.10.1.0/24"
+        map_public: false
+        purge_tags: true
+        tags:
+          Name: "aa-ne-sub01"

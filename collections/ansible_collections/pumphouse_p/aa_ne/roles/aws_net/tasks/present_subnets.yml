@@ -1,0 +1,26 @@
+---
+- name: "Grab the ID of the VPC being operated on"
+  amazon.aws.ec2_vpc_net_info:
+    filters:
+      "tag:Name": "{{ vpc.name }}"
+  register: __vpc
+
+- name: "Ensure a VPC has been found"
+  ansible.builtin.assert:
+    that:
+      - __vpc | length > 0
+    success_msg: "Found {{ __vpc | length }} VPC(s)."
+    fail_msg: "No VPC found. Bailing out."
+
+- name: "Ensure subnet exists with desired configuration"
+  amazon.aws.ec2_vpc_subnet:
+    cidr: "{{ subnet.cidr_block }}"
+    map_public: "{{ subnet.map_public }}"
+    purge_tags: "{{ subnet.purge_tags }}"
+    tags: "{{ __aws_net_default_tags | combine(subnet.tags) }}"
+    vpc_id: "{{ __vpc.vpcs.0.id }}"
+    region: "{{ aws_region }}"
+    state: present
+  loop: "{{ vpc.subnets }}"
+  loop_control:
+    var: subnet

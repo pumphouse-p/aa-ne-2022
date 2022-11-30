@@ -1,0 +1,23 @@
+---
+- name: "Ensure VPCs exist with desired configuration"
+  amazon.aws.ec2_vpc_net:
+    name: "{{ vpc.name }}"
+    cidr_block: "{{ vpc.cidr_block }}"
+    dns_hostnames: "{{ vpc.dns_hostnames | default(omit) }}"
+    dns_support: "{{ vpc.dns_support | default(omit) }}"
+    purge_cidrs: "{{ vpc.purge_cidrs | default(omit) }}"
+    multi_ok: "{{ vpc.multi_ok | default(omit) }}"
+    tags: "{{ __aws_net_default_tags | combine(vpc.tags) }}"
+    purge_tags: "{{ vpc.purge_tags }}"
+    region: "{{ aws_region }}"
+    state: present
+  loop: "{{ aws_net_vpcs }}"
+  loop_control:
+    var: vpc
+
+- name: "Loop over VPCs and setup subnets"
+  ansible.builtin.include_tasks:
+    file: present_subnets.yml
+  loop: "{{ aws_net_vpcs }}"
+  loop_control:
+    var: vpc
