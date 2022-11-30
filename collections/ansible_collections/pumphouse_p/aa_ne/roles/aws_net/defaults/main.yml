@@ -21,6 +21,11 @@ aws_net_vpcs:
         purge_tags: true
         tags:
           Name: "aa-ne-sub01"
+      - cidr_block: "10.10.2.0/24"
+        map_public: false
+        purge_tags: true
+        tags:
+          Name: "aa-ne-sub02"
     internet_gateway:
       enabled: true
       purge_tags: true
