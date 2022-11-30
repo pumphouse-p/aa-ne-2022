@@ -2,9 +2,9 @@
 - name: Ensure network resources are present
   ansible.builtin.include_tasks:
     file: present.yml
-  when: aws_net_state == 'present'
+  when: aws_resource_state == 'present'
 
 - name: Ensure network resources are absent
   ansible.builtin.include_tasks:
     file: absent.yml
-  when: aws_net_state == 'absent'
+  when: aws_resource_state == 'absent'
