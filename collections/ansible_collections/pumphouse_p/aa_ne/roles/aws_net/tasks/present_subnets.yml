@@ -57,9 +57,13 @@
     loop_var: __subnet_id
   register: __private_subnet_ids
 
+- name: Flatten results
+  ansible.builtin.set_fact:
+    subnet_ids: "{{ __private_subnet_ids.results | map(attribute='id') | list | flatten }}"
+
 - name: Debug output
   ansible.builtin.debug:
-    var: __private_subnet_ids.results
+    var: subnet_ids
 
 - name: "Setup NAT gateways for private subnets"
   amazon.aws.ec2_vpc_nat_gateway:
