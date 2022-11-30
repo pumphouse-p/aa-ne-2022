@@ -13,11 +13,11 @@
     state: present
   loop: "{{ aws_net_vpcs }}"
   loop_control:
-    var: vpc
+    loop_var: vpc
 
 - name: "Loop over VPCs and setup subnets"
   ansible.builtin.include_tasks:
     file: present_subnets.yml
   loop: "{{ aws_net_vpcs }}"
   loop_control:
-    var: vpc
+    loop_var: vpc

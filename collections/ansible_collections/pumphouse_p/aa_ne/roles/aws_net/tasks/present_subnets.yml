@@ -23,4 +23,4 @@
     state: present
   loop: "{{ vpc.subnets }}"
   loop_control:
-    var: subnet
+    loop_var: subnet
