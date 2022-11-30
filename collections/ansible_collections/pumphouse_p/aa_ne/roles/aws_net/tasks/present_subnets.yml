@@ -10,8 +10,8 @@
   ansible.builtin.assert:
     that:
       - __vpc.vpcs | length == 1
-    success_msg: "Found {{ __vpc.vpcs | length }} VPC."
-    fail_msg: "Did not find exact 1 VPC. Bailing out."
+    success_msg: "Found {{ __vpc.vpcs | length }} VPC (id={{ __vpc.vpcs.0.id }})"
+    fail_msg: "Did not find exactly 1 VPC. Bailing out."
 
 - name: "Ensure subnet exists with desired configuration"
   amazon.aws.ec2_vpc_subnet:
