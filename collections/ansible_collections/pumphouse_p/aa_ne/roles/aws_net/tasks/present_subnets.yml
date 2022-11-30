@@ -36,6 +36,13 @@
   when: vpc.internet_gateway
   register: __igw
 
-- name: Debug output
-  ansible.builtin.debug:
-    var: __igw
+- name: "Setup route table for public subnets"
+  amazon.aws.ec2_vpc_route_table:
+    vpc_id: "{{ __vpc.vpcs.0.id }}"
+    region: "{{ aws_region }}"
+    tags:
+      Name: "aa-ne-public"
+    subnets: "{{ vpc.subnets | selectattr('map_public', 'is', true) | map(attribute='cidr_block') | list }}"
+    routes:
+      - dest: 0.0.0.0
+        gateway_id: "{{ __igw.gateway_id }}"
