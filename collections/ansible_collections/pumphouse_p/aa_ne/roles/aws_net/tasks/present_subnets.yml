@@ -3,6 +3,7 @@
   amazon.aws.ec2_vpc_net_info:
     filters:
       "tag:Name": "{{ vpc.name }}"
+    region: "{{ aws_region }}"
   register: __vpc
 
 - name: "Ensure a VPC has been found"
