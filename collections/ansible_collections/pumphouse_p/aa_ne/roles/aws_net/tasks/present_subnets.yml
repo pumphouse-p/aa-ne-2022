@@ -28,8 +28,8 @@
 
 - name: "Ensure internet gateway exists when enabled"
   amazon.aws.ec2_vpc_igw:
-    purge_tags: "{{ vpc.purge_tags }}"
-    tags: "{{ __aws_net_default_tags }}"
+    purge_tags: "{{ vpc.internet_gateway.purge_tags }}"
+    tags: "{{ __aws_net_default_tags | combine(vpc.internet_gateway.tags) }}"
     vpc_id: "{{ __vpc.vpcs.0.id }}"
     region: "{{ aws_region }}"
     state: present
