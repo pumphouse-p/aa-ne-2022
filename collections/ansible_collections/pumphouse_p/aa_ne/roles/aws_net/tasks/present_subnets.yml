@@ -64,7 +64,7 @@
 
 - name: Set fact with private subnet IDs
   ansible.builtin.set_fact:
-    __subnet_ids: "{{ __private_subnet_info.subnets | map(attribute='id') | list }}"
+    __subnet_ids: "{{ __private_subnet_info.results.0.subnets | map(attribute='id') | list }}"
 
 - name: "Setup NAT gateways for private subnets"
   amazon.aws.ec2_vpc_nat_gateway:
