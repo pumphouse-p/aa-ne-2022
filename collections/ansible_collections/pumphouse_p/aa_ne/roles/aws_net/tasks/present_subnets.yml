@@ -34,3 +34,8 @@
     region: "{{ aws_region }}"
     state: present
   when: vpc.internet_gateway
+  register: __igw
+
+- name: Debug output
+  ansible.builtin.debug:
+    var: __igw
