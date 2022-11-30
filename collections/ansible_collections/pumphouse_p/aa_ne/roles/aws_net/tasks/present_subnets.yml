@@ -9,8 +9,8 @@
 - name: "Ensure a VPC has been found"
   ansible.builtin.assert:
     that:
-      - __vpc | length > 0
-    success_msg: "Found {{ __vpc | length }} VPC(s)."
+      - __vpc.vpcs | length > 0
+    success_msg: "Found {{ __vpc.vpcs | length }} VPC(s)."
     fail_msg: "No VPC found. Bailing out."
 
 - name: "Ensure subnet exists with desired configuration"
