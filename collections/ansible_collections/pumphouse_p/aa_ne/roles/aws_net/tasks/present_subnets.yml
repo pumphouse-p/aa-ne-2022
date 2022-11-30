@@ -63,9 +63,9 @@
 
 - name: "Setup NAT gateways for private subnets"
   amazon.aws.ec2_vpc_nat_gateway:
-    subnet_id: "{{ subnets.subnet_id }}"
+    subnet_id: "{{ subnets.subnets.subnet_id }}"
     region: "{{ aws_region }}"
     state: present
-  loop: "{{ __private_subnet_ids.results.subnets }}"
+  loop: "{{ __private_subnet_ids.results }}"
   loop_control:
     loop_var: subnets
