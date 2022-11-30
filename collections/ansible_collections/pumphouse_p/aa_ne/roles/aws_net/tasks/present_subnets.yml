@@ -52,7 +52,7 @@
     filters:
       "tag:Name": "{{ __subnet_id }}"
     region: "{{ aws_region }}"
-  loop: "{{ vpc.subnets | rejectattr('map_public') | map(attribute('tags.Name')) | list }}"
+  loop: "{{ vpc.subnets | rejectattr('map_public') | map(attribute=('tags.Name')) | list }}"
   loop_control:
     loop_var: __subnet_id
   register: __private_subnet_ids
