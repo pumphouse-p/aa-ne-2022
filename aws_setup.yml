@@ -4,4 +4,4 @@
   become: false
 
   roles:
-    - name: aws_net
+    - name: pumphouse_p.aa_ne.aws_net
