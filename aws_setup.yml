@@ -1,0 +1,7 @@
+---
+- name: "Setup AWS Resources"
+  hosts: localhost
+  become: false
+
+  tasks:
+    - ansible.builtin.import_playbook: pumphouse_p.aa_ne.create_net
