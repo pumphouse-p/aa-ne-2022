@@ -50,26 +50,19 @@
 - name: "Grab the ID(s) of the private subnets"
   amazon.aws.ec2_vpc_subnet_info:
     filters:
-      "tag:Name": "{{ __subnet_id }}"
+      vpc-id: "{{ __vpc.vpcs.0.id }}"
+      "tag:Name": "{{ __subnet_name }}"
     region: "{{ aws_region }}"
   loop: "{{ vpc.subnets | rejectattr('map_public') | map(attribute=('tags.Name')) | list }}"
   loop_control:
-    loop_var: __subnet_id
-  register: __private_subnet_ids
-
-- name: Flatten results
-  ansible.builtin.set_fact:
-    subnet_ids: "{{ __private_subnet_ids.results | map(attribute='id') | list | flatten }}"
-
-- name: Debug output
-  ansible.builtin.debug:
-    var: subnet_ids
+    loop_var: __subnet_name
+  register: __private_subnet_info
 
 - name: "Setup NAT gateways for private subnets"
   amazon.aws.ec2_vpc_nat_gateway:
-    subnet_id: "{{ subnets.subnets.subnet_id }}"
+    subnet_id: "{{ sub_id }}"
     region: "{{ aws_region }}"
     state: present
-  loop: "{{ __private_subnet_ids.results }}"
+  loop: "{{ __private_subnet_info.subnets | map(attribute='id') | list }}"
   loop_control:
-    loop_var: subnets
+    loop_var: sub_id
