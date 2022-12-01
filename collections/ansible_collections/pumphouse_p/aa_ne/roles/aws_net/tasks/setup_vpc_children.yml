@@ -85,6 +85,7 @@
       - proto: "{{ secgroup.proto }}"
         from_port: "{{ secgroup.from_port }}"
         to_port: "{{ secgroup.to_port }}"
+    region: "{{ aws_region }}"
   loop: "{{ vpc.security_groups }}"
   loop_control:
     loop_var: secgroup
