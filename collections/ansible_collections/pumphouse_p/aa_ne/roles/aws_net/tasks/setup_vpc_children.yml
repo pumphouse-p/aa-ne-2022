@@ -75,3 +75,16 @@
   loop: "{{ __subnet_ids }}"
   loop_control:
     loop_var: sub_id
+
+- name: "Setup security groups"
+  amazon.aws.ec2_security_group:
+    name: "{{ secgroup.name }}"
+    description: "{{ security_group_services.secgroup.description }}"
+    vpc_id: "{{ __vpc.vpcs.0.id }}"
+    rules:
+      - proto: "{{ security_group_services.secgroup.protocol }}"
+        from_port: "{{ security_group_services.secgroup.from_port }}"
+        to_port: "{{ security_group_services.secgroup.to_port }}"
+  loop: "{{ vpc.security_groups  }}"
+  loop_control:
+    loop_var: secgroup

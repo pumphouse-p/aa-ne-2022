@@ -15,9 +15,9 @@
   loop_control:
     loop_var: vpc
 
-- name: "Loop over VPCs and setup subnets"
+- name: "Loop over VPCs and setup child resources"
   ansible.builtin.include_tasks:
-    file: present_subnets.yml
+    file: setup_vpc_children.yml
   loop: "{{ aws_net_vpcs }}"
   loop_control:
     loop_var: vpc

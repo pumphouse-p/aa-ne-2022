@@ -21,11 +21,11 @@ aws_net_vpcs:
         purge_tags: true
         tags:
           Name: "aa-ne-sub01"
-      - cidr_block: "10.10.2.0/24"
-        map_public: false
-        purge_tags: true
-        tags:
-          Name: "aa-ne-sub02"
+    security_groups:
+      - name: "allow_ssh"
+        service: "ssh"
+        type: "inbound"
+        inbound_source_cidr: "0.0.0.0/0"
     internet_gateway:
       enabled: true
       purge_tags: true
