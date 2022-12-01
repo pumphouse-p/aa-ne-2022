@@ -79,12 +79,12 @@
 - name: "Setup security groups"
   amazon.aws.ec2_security_group:
     name: "{{ secgroup.name }}"
-    description: "{{ security_group_services.secgroup['name'].description }}"
+    description: "{{ security_group_services.secgroup['service'].description }}"
     vpc_id: "{{ __vpc.vpcs.0.id }}"
     rules:
-      - proto: "{{ security_group_services.secgroup['name'].protocol }}"
-        from_port: "{{ security_group_services.secgroup['name'].from_port }}"
-        to_port: "{{ security_group_services.secgroup['name'].to_port }}"
+      - proto: "{{ security_group_services.secgroup['service'].protocol }}"
+        from_port: "{{ security_group_services.secgroup['service'].from_port }}"
+        to_port: "{{ security_group_services.secgroup['service'].to_port }}"
   loop: "{{ vpc.security_groups }}"
   loop_control:
     loop_var: secgroup
