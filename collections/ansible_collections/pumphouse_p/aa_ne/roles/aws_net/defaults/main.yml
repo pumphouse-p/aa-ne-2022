@@ -23,9 +23,10 @@ aws_net_vpcs:
           Name: "aa-ne-sub01"
     security_groups:
       - name: "allow_ssh"
-        service: "ssh"
-        type: "inbound"
-        inbound_source_cidr: "0.0.0.0/0"
+        description: "Allow inbound tcp/22 (ssh)"
+        proto: "tcp"
+        from_port: 22
+        to_port: 22
     internet_gateway:
       enabled: true
       purge_tags: true
