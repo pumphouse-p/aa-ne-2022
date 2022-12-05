@@ -1,0 +1,22 @@
+---
+- name: "Retrieve virtual network information"
+  azure.azcollection.azure_rm_virtualnetwork_info:
+    resource_group: "{{ azure_resourcegroup_name }}"
+    tags:
+      - "purpose:aa_ne"
+  register: __azure_vnet_info
+
+- name: "Debug output"
+  ansible.builtin.debug:
+    var: __azure_vnet_info
+
+- name: "Retrieve instance information"
+  azure.azcollection.azure_rm_virtualmachine_info:
+    resource_group: "{{ azure_resourcegroup_name }}"
+    tags:
+      - "purpose:aa_ne"
+  register: __azure_vm_info
+
+- name: "Debug output"
+  ansible.builtin.debug:
+    var: __azure_vm_info
