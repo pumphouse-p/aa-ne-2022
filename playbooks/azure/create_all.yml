@@ -17,3 +17,4 @@
         azure_instance_size: "Standard_B1ms"
         azure_instance_network_name: "aa_ne_net"
         azure_instance_subnet_name: "aa_ne_subnet"
+        azure_instance_os: "rhel_8"
