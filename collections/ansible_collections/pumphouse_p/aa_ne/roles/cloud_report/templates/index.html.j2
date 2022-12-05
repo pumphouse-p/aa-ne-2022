@@ -21,8 +21,60 @@ collapsible: true
   {% include 'header.html.j2' %}
 <section>
 <center>
-<h1>Ansible Hybrid Cloud Automation Example Report</h1>
+<h1>Ansible Hybrid Cloud Automation Report</h1>
 </center>
+
+<table class="main_net_table">
+    <thead>
+        <tr>
+            <th>Public Cloud</th>
+            <th class="region_column">Region</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="summary_info">
+              <div id="hostname">
+              <img class="router_image" src="aws.png" alt="picture of cloud">
+              <br><p class="hostname">AWS</p>
+            </div>
+              <div id="net_info_div">
+              <table class="net_info">
+              <tbody>
+                <tr>
+                  <td>Boto3 Version</td>
+                  <td class="sub_net_info">{{ py_cmd | default ('unknown')}}</td>
+                </tr>
+                <tr>
+                  <td>AWS user</td>
+                  <td class="sub_net_info">{{ aws_user | default('unknown') }}</td>
+                </tr>
+                <tr>
+                  <td>Account ID</td>
+                  <td class="sub_net_info">{{ whoami.account | default('unknown') }}</td>
+                </tr>
+                <tr>
+                  <td>Account Alias</td>
+                  <td class="sub_net_info">{{ whoami.account_alias | default ('unknown')}}</td>
+                </tr>
+              </tbody>
+              </table>
+
+
+            {% include 'ansible.html.j2' %}
+          </div>
+
+
+
+            </td>
+
+            <td>
+            {% include 'vpc.html.j2' %}
+            </td>
+        </tr>
+
+    </tbody>
+</table>
 
 <center><p>Created with</p><br><img src="webpage_logo.png" width="300" alt="red hat ansible automation platform logo">
 <p>The source code to create this report can be found at <a href="https://github.com/ansible-cloud/aws_demos">https://github.com/ansible-cloud/aws_demos</a><br><br>
