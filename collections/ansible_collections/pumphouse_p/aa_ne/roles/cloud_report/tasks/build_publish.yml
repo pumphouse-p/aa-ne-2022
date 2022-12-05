@@ -15,6 +15,12 @@
     dest: "{{ __report_workdir }}/index.html"
     mode: 0644
 
+- name: "Copy static files to workdir"
+  ansible.builtin.copy:
+    src: "../files"
+    dest: "{{ __report_workdir }}/"
+    directory_mode: true
+
 - name: "Create S3 bucket"
   amazon.aws.s3_bucket:
     name: "{{ cloud_report_publish_s3_bucket_name }}"
@@ -33,7 +39,6 @@
 - name: "Copy static files to bucket"
   community.aws.s3_sync:
     bucket: "{{ cloud_report_publish_s3_bucket_name }}"
-    file_root: "../files/"
+    file_root: "{{ __report_workdir }}"
     permission: "public-read"
     include: "*"
-    exclude: ""
