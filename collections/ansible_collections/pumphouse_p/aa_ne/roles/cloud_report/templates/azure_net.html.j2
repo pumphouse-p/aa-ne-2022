@@ -40,11 +40,13 @@
 <tbody>
     <tr>
         <th class="__vpc_info">{{ '%-38s'|format('Subnet name') }}</th>
+        <th class="__vpc_info">{{ '%-28s'|format('Subnet CIDR') }}</th>
     </tr>
 
     {% for subnet in vnet.subnets %}
     <tr>
         <td>{{ '%-38s' | format(subnet.name | default('unknown')) }}</td>
+        <td>{{ '%-38s' | format(subnet.address_prefix | default('unknown')) }}</td>
     </tr>
     {% endfor %}
 </tbody>
