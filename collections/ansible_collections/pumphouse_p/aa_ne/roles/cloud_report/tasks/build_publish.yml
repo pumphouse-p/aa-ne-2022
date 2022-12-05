@@ -1,5 +1,13 @@
 ---
-- name: "Create S3 Bucket for report hosting"
+- name: "Create S3 bucket"
+  amazon.aws.s3_bucket:
+    name: "{{ cloud_report_publish_s3_bucket_name }}"
+    state: present
+    versioning: false
+    tags:
+      purpose: "aa_ne"
+
+- name: "Configure S3 bucket for report hosting"
   community.aws.s3_website:
     name: "{{ cloud_report_publish_s3_bucket_name }}"
     region: "{{ aws_region }}"
