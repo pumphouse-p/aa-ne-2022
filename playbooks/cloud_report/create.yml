@@ -1,0 +1,8 @@
+---
+- name: "Generate and publish cloud report"
+  hosts: localhost
+  gather_facts: true
+  become: false
+
+  roles:
+    - name: pumphouse_p.aa_ne.cloud_report

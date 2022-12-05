@@ -1,0 +1,14 @@
+---
+- name: "Gather AWS related information"
+  ansible.builtin.include_tasks:
+    file: "aws.yml"
+  when: '"aws" in cloud_report_targets'
+
+- name: "Gather Azure related information"
+  ansible.builtin.include_tasks:
+    file: "azure.yml"
+  when: '"azure" in cloud_report_targets'
+
+- name: "Build and publish report"
+  ansible.builtin.include_tasks:
+    file: "build_publish.yml"

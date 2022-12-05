@@ -1,0 +1,30 @@
+---
+galaxy_info:
+  author: Devin Parrish
+  role_name: aa_ne.cloud_report
+  namespace: pumphouse_p
+  description: An Ansible Role that generates and publishes a report of objects in our cloud footprint.
+
+  license: GPL
+
+  min_ansible_version: 2.9
+
+  galaxy_tags:
+    - cloud
+    - report
+
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: Fedora
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+
+dependencies: []

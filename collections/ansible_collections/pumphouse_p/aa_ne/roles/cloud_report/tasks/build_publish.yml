@@ -1,0 +1,7 @@
+---
+- name: "Create S3 Bucket for report hosting"
+  community.aws.s3_website:
+    name: "{{ cloud_report_publish_s3_bucket_name }}"
+    region: "{{ aws_region }}"
+    state: present
+    suffix: "index.html"

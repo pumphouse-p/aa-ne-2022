@@ -1,0 +1,5 @@
+---
+aws_region: "us-east-2"
+
+cloud_report_publish_to: "s3"
+cloud_report_publish_s3_bucket_name: "deparris-cloudreport"
