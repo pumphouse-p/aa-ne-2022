@@ -1,5 +1,5 @@
 ---
-__aws_net_default_tags:
+__aws_instance_default_tags:
   created_by: ansible
   managed_by: ansible
   purpose: aa_ne
