@@ -1,0 +1,7 @@
+---
+plugin: amazon.aws.aws_ec2
+filters:
+  tag:purpose: aa_ne
+compose:
+  ansible_host: public_dns_name
+  ansible_user: ansible
