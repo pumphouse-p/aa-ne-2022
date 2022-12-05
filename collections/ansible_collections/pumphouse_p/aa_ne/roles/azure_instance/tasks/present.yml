@@ -28,6 +28,7 @@
     os_type: "{{ selected_image.os_type | capitalize }}"
     admin_username: "{{ azure_instance_admin_username }}"
     append_tags: "{{ azure_instance_purge_tags }}"
+    tags: "{{ __azure_instance_default_tags | combine(azure_instance_tags) }}"
     ssh_password_enabled: "{{ azure_instance_ssh_password_enabled }}"
     ssh_public_keys:
       - path: "/home/{{ azure_instance_admin_username }}/.ssh/authorized_keys"

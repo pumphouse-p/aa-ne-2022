@@ -1,4 +1,9 @@
 ---
+__azure_instance_default_tags:
+  provisioned_by: "ansible"
+  managed_by: "ansible"
+  purpose: "aa_ne"
+
 azure_images:
   rhel_7:
     publisher: 'RedHat'
