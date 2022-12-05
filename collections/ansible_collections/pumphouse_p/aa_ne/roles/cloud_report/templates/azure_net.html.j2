@@ -15,12 +15,12 @@
         <th class="__vpc_info">{{ '%-18s'|format('VNet Subnets') }}</th>
     </tr>
 
-    {% for vnet in __azure_vnet_info %}
+    {% for vnet in __azure_vnet_info.virtualnetworks %}
     <tr>
-        <td>{{ '%-38s'|format(vnet.name | default('unknown')) }}</td>
+        <td>{{ '%-38s' | format(vnet.name | default('unknown')) }}</td>
         <td>{{ '%-28s' | format(vnet.provisioning_state) }}</td>
-        <td>{{ '%-14s'|format(vnet.address_prefixes | join(',')) }}</td>
-        <td>{{ '%-18s'|format(vnet.subnets | length) }}</td>
+        <td>{{ '%-14s' | format(vnet.address_prefixes | join(',')) }}</td>
+        <td>{{ '%-18s' | format(vnet.subnets | length) }}</td>
     </tr>
     {% endfor %}
 </tbody>
