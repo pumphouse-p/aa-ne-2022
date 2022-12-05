@@ -35,3 +35,5 @@
     bucket: "{{ cloud_report_publish_s3_bucket_name }}"
     file_root: "../files/"
     permission: "public-read"
+    include: "*"
+    exclude: ""
