@@ -2,14 +2,20 @@
 - name: "Retrieve VPC information"
   amazon.aws.ec2_vpc_net_info:
     region: "{{ aws_region }}"
+    filters:
+      tag:purpose: "aa_ne"
   register: __vpc_info
 
 - name: "Retrieve instance information"
   amazon.aws.ec2_instance_info:
     region: "{{ aws_region }}"
+    filters:
+      tag:purpose: "aa_ne"
   register: __instance_info
 
 - name: "Retrieve IGW information"
   amazon.aws.ec2_vpc_igw_info:
     region: "{{ aws_region }}"
+    filters:
+      tag:purpose: "aa_ne"
   register: __igw_info
