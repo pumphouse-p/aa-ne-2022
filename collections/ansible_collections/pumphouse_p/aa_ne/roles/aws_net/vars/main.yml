@@ -2,20 +2,4 @@
 __aws_net_default_tags:
   created_by: ansible
   managed_by: ansible
-
-security_group_services:
-  ssh:
-    description: "Allow inbound tcp/22 (ssh)"
-    proto: "tcp"
-    from_port: 22
-    to_port: 22
-  http:
-    description: "Allow inbound tcp/80 (http)"
-    proto: "tcp"
-    from_port: 80
-    to_port: 80
-  https:
-    description: "Allow inbound tcp/443 (https)"
-    proto: "tcp"
-    from_port: 443
-    to_port: 443
+  purpose: aa_ne

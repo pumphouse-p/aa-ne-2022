@@ -1,16 +1,16 @@
 ---
 namespace: pumphouse_p
-name: skel
+name: aa_ne
 version: 1.0.0
 readme: README.md
 authors:
   - Devin Parrish (https://github.com/pumphouse-p)
-description: your collection description
+description: Collection of Ansible content shown at Ansible Automates NE 2022
 license_file: LICENSE
 tags: []
 dependencies: {}
-repository: https://github.com/pumphouse-p
-documentation: https://github.com/pumphouse-p
-homepage: https://github.com/pumphouse-p
-issues: https://github.com/pumphouse-p
+repository: https://github.com/pumphouse-p/aa-ne-2022
+documentation: https://github.com/pumphouse-p/aa-ne-2022
+homepage: https://github.com/pumphouse-p/aa-ne-2022
+issues: https://github.com/pumphouse-p/aa-ne-2022
 build_ignore: []

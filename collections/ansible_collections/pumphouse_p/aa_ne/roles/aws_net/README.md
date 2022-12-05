@@ -20,7 +20,7 @@ Available variables are described in the table below.
 
 ## Dependencies
 
-* ``
+None.
 
 ## Example Playbook
 
