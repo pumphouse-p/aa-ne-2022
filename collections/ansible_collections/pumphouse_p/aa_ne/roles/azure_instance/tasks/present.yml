@@ -25,7 +25,7 @@
     vm_size: "{{ azure_instance_size }}"
     virtual_network_name: "{{ azure_instance_network_name }}"
     subnet_name: "{{ azure_instance_subnet_name | default(omit) }}"
-    os_type: "{{ selected_image.ostype | capitalize }}"
+    os_type: "{{ selected_image.os_type | capitalize }}"
     admin_username: "{{ azure_instance_admin_username }}"
     append_tags: "{{ azure_instance_purge_tags }}"
     ssh_password_enabled: "{{ azure_instance_ssh_password_enabled }}"
