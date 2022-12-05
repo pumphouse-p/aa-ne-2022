@@ -1,0 +1,10 @@
+---
+aws_region: "us-east-2"
+
+aws_key_name: ""
+
+aws_key_force: false
+
+aws_key_tags: {}
+
+aws_key_purge_tags: true

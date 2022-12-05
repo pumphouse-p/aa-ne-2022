@@ -1,0 +1,20 @@
+---
+- name: "Load public key from file"
+  ansible.builtin.set_fact:
+    aws_key_pubkey: "{{ lookup('file', aws_key_pubkey_path) }}"
+  when: aws_key_pubkey_path is defined
+
+- name: "Ensure keypair exists with desired configuration"
+  amazon.aws.ec2_key:
+    name: "{{ aws_key_name }}"
+    key_material: "{{ aws_key_pubkey | default(omit) }}"
+    force: "{{ aws_key_force }}"
+    tags: "{{ __aws_key_default_tags | combine(aws_key_tags) }}"
+    purge_tags: "{{ aws_key_purge_tags }}"
+    region: "{{ aws_region }}"
+    state: present
+  register: __keypair
+
+- name: "Debug output"
+  ansible.builtin.debug:
+    var: __keypair

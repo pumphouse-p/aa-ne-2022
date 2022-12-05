@@ -1,0 +1,9 @@
+---
+- name: "Ensure AWS keypair configured"
+  hosts: localhost
+  become: false
+  vars:
+    aws_key_pubkey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDyw+CU9xVc9PYJzHAVicccQldwKjPSG5I/KLbImY8SIJdLt9XswA58lTvMBl7aNaemT9kpygqr2guOpMhTLLQa8u6XyEYy4cE9E7aRszWpPBJ1QQq8/hapXp2wBJ6ImxD/Cq6zhguEoDyspoORCJHlmDajJKCam29Zry9CEfK6901vRQ6qe+26th84dJ7ZXPQ9AcNFf9T6E1KhEZPmQVcv+k9TkhgL4+Rs7vbIIqHryc+InmvZ5ykWp4TEDExH442neBd1feLgQo9BIxlzwC/WKLkNmE8g8G64Nurs691xw3X9bbrlHhg4evUO00xbx6pElqHBJOvph557Uv0uxj1tt6YxUbwvguoxxS1v0o0GobA5yqX2OmCuCw8mjASU/off888tUArSZ0mwBmdFTE+WAFZDSEoDdkkZ8z1gRF9i+ga7s9yC6RruDEfEpMldrDcHbblhrXzKMu9LJwJYyxEUO1LRZ2qx9gohr3G85c8ZFOsGAuXJyg+b7TcgLhbvVZ0= devin@aa-ne"
+
+  roles:
+    - name: pumphouse_p.aa_ne.aws_key

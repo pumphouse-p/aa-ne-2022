@@ -1,0 +1,30 @@
+---
+galaxy_info:
+  author: Devin Parrish
+  role_name: aws_key
+  namespace: pumphouse_p.aa_ne
+  description: Manage key pairs in AWS
+
+  license: GPL
+
+  min_ansible_version: 2.9
+
+  galaxy_tags:
+    - aws
+    - keypair
+
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: Fedora
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+
+dependencies: []

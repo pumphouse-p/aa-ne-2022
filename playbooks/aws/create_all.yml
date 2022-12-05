@@ -1,0 +1,6 @@
+---
+- name: "[AWS] Network"
+  ansible.builtin.import_playbook: create_net.yml
+
+- name: "[AWS] Keypair"
+  ansible.builtin.import_playbook: create_key.yml

@@ -1,0 +1,10 @@
+---
+- name: Ensure keypair resources are present
+  ansible.builtin.include_tasks:
+    file: present.yml
+  when: aws_resource_state == 'present'
+
+- name: Ensure keypair resources are absent
+  ansible.builtin.include_tasks:
+    file: absent.yml
+  when: aws_resource_state == 'absent'
