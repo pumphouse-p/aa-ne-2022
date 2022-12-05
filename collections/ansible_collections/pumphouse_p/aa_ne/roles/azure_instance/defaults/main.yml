@@ -1,0 +1,4 @@
+---
+azure_instance_admin_username: "ansible"
+azure_instance_purge_tags: true
+azure_instance_ssh_password_enabled: false
