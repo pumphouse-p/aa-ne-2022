@@ -30,11 +30,12 @@
 </div>
 
 <h3>Azure Virtual Subnet Information</h3>
+{% for vnet in __azure_vnet_info.virtualnetworks %}
 <div id="accordion">
 <div>
-<h3>{{ azure_resourcegroup_name | default('unknown') }}</h3>
+<h3>{{ vnet.name | default('unknown') }}</h3>
 <div class="net_content">
-<p class="description">There are <strong>{{ __azure_vnet_info.virtualnetworks | length }}</strong> Azure virtual networks configured in the {{ azure_resourcegroup_name | default('unkown') }} resource group
+<p class="description">There are <strong>{{ vnet.subnets | length }}</strong> Azure virtual subnets configured in the {{ vnet.name }} virtual network
 <table class="net_info">
 <tbody>
     <tr>
@@ -44,7 +45,7 @@
         <th class="__vpc_info">{{ '%-18s'|format('Subnet Subnets') }}</th>
     </tr>
 
-    {% for vnet in __azure_vnet_info.virtualnetworks %}
+    {% for subnet in __azure_vnet_info.virtualnetworks.subnets %}
     <tr>
         <td>{{ '%-38s' | format(vnet.name | default('unknown')) }}</td>
         <td>{{ '%-28s' | format(vnet.provisioning_state) }}</td>
@@ -58,4 +59,5 @@
 </div>
 </div>
 </div>
+{% endfor %}
 <!-- END INTERNAL TABLE FOR Azure Virtual Networks -->
