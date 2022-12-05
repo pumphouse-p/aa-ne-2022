@@ -42,3 +42,7 @@
     file_root: "{{ __report_workdir }}"
     permission: "public-read"
     include: "*"
+
+- name: "Output URL of report"
+  ansible.builtin.debug:
+    msg: "Report has been successfully generated. Browse to http://{{ cloud_report_publish_s3_bucket_name }}.s3-website-us-east1.amazonaws.com to view."
