@@ -1,0 +1,5 @@
+---
+plugin: azure.azcollection.azure_rm
+exclude_host_filters:
+  - "powerstate" != "running"
+  - tags['purpose'] is defined and tags['purpose'] != 'aa_ne'
