@@ -44,6 +44,7 @@
         <th class="__vpc_info">{{ '%-14s'|format('Subnet Address') }}</th>
     </tr>
 
+<!--
     {% for subnet in vnet.subnets %}
     <tr>
         <td>{{ '%-38s' | format(subnet.name | default('unknown')) }}</td>
@@ -51,6 +52,7 @@
         <td>{{ '%-14s' | format(subnet.address_prefixes | join(',')) }}</td>
     </tr>
     {% endfor %}
+-->
 </tbody>
 </table>
 
