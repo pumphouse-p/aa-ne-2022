@@ -28,36 +28,4 @@
 </div>
 </div>
 </div>
-
-<h3>Azure Virtual Subnet Information</h3>
-{% for vnet in __azure_vnet_info.virtualnetworks %}
-<div id="accordion">
-<div>
-<h3>{{ vnet.name | default('unknown') }}</h3>
-<div class="net_content">
-<p class="description">There are <strong>{{ vnet.subnets | length }}</strong> Azure virtual subnets configured in the {{ vnet.name }} virtual network
-<table class="net_info">
-<tbody>
-    <tr>
-        <th class="__vpc_info">{{ '%-38s'|format('Subnet name') }}</th>
-        <th class="__vpc_info">{{ '%-28s'|format('Subnet State') }}</th>
-        <th class="__vpc_info">{{ '%-14s'|format('Subnet Address') }}</th>
-    </tr>
-
-<!--
-    {% for subnet in vnet.subnets %}
-    <tr>
-        <td>{{ '%-38s' | format(subnet.name | default('unknown')) }}</td>
-        <td>{{ '%-28s' | format(subnet.provisioning_state) }}</td>
-        <td>{{ '%-14s' | format(subnet.address_prefixes | join(',')) }}</td>
-    </tr>
-    {% endfor %}
--->
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-{% endfor %}
 <!-- END INTERNAL TABLE FOR Azure Virtual Networks -->
