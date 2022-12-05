@@ -1,4 +1,19 @@
 ---
+- name: "Set fact for working directory"
+  ansible.builtin.set_fact:
+    __report_workdir: "{{ ansible_env.HOME }}/report_workdir"
+
+- name: "Create working directory"
+  ansible.builtin.file:
+    path: "{{ __report_workdir }}"
+    state: directory
+
+- name: "Render template"
+  ansible.builtin.template:
+    src: "index.html.j2"
+    dest: "{{ __report_workdir }}/index.html"
+    mode: 0644
+
 - name: "Create S3 bucket"
   amazon.aws.s3_bucket:
     name: "{{ cloud_report_publish_s3_bucket_name }}"
@@ -13,3 +28,15 @@
     region: "{{ aws_region }}"
     state: present
     suffix: "index.html"
+
+- name: "Copy static files to bucket"
+  amazon.aws.s3_object:
+    name: "{{ cloud_report_publish_s3_bucket_name }}"
+    mode: "put"
+    src: "{{ lookup('file', item) }}"
+  loop:
+    - "css"
+    - "aws.png"
+    - "redhat-ansible-logo.png"
+    - "router.png"
+    - "webpage_logo.png"
