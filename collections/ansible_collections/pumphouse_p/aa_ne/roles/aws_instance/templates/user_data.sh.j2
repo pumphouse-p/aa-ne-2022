@@ -3,3 +3,6 @@
 useradd -m ansible
 usermod -aG sudo ansible
 usermod -aG wheel ansible
+tee -a ~ansible/.ssh/authorized_keys << EOF
+{{ aws_key_pubkey }}
+EOF
