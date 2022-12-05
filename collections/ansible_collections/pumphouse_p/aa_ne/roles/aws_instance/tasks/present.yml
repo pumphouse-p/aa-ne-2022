@@ -1,0 +1,63 @@
+---
+- name: "Lookup VPC subnet"
+  amazon.aws.ec2_vpc_subnet_info:
+    filters:
+      "tag:Name": "{{ aws_instance_subnet_name }}"
+    region: "{{ aws_region }}"
+  register: __subnet_info
+
+- name: "Assert subnet was found"
+  ansible.builtin.assert:
+    that:
+      - __subnet_info.subnets | length == 1
+    success_msg: "Found {{ __subnet_info.subnets | length }} subnet (id={{ __subnet_info.subnets.0.id }})"
+    fail_msg: "Did not find exactly 1 subnet. Bailing out"
+
+- name: Check for supported operating system
+  ansible.builtin.assert:
+    that:
+      - aws_instance_os_name == 'rhel' or
+        aws_instance_os_name == 'centos'
+    msg: "Unsupported operating system provided"
+
+- name: Set fact with desired image lookup fields
+  ansible.builtin.set_fact:
+    __image_to_lookup: "{{ aws_images[aws_instance_os_name][aws_instance_os_version] }}"
+
+- name: Print lookup image details
+  ansible.builtin.debug:
+    var: __image_to_lookup
+
+- name: Lookup desired operating system image
+  ansible.builtin.include_tasks:
+    file: image_lookup_{{ aws_instance_os_name }}.yml
+
+- name: Print operating system image details
+  ansible.builtin.debug:
+    var: __aws_instance_os_image_latest
+
+- name: "Ensure instances are present"
+  amazon.aws.ec2_instance:
+    name: "{{ aws_instance_name }}"
+    instance_type: "{{ aws_instance_type }}"
+    key_name: "{{ aws_instance_key_name }}"
+    security_groups: "{{ aws_instance_security_groups }}"
+    image_id: "{{ __aws_instance_os_image_latest.image_id }}"
+    tags: "{{ __aws_instance_default_tags | combine(aws_instance_tags) }}"
+    purge_tags: "{{ aws_instance_purge_tags }}"
+    count: "{{ aws_instance_count | default(omit) }}"
+    exact_count: "{{ aws_instance_exact_count | default(omit) }}"
+    volumes:
+      - device_name: "/dev/sda1"
+        ebs:
+          volume_size: "{{ aws_instance_volume_size }}"
+          delete_on_termination: true
+    vpc_subnet_id: "{{ __subnet_info.subnets.0.id  }}"
+    user_data: "{{ lookup('template', 'user_data.sh.j2') }}"
+    region: "{{ aws_region }}"
+    state: present
+  register: __aws_instances
+
+- name: Debug output
+  ansible.builtin.debug:
+    var: __aws_instances

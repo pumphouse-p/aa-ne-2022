@@ -4,9 +4,22 @@
   become: false
   vars:
     aws_resource_state: "present"
+    aws_region: "us-east-2"
 
   roles:
     - name: pumphouse_p.aa_ne.aws_net
+
     - name: pumphouse_p.aa_ne.aws_key
       vars:
         aws_key_name: "aa_ne"
+
+    - name: pumphouse_p.aa_ne.aws_instance
+      vars:
+        aws_instance_name: "aa_ne_rhel"
+        aws_instance_exact_count: 3
+        aws_instance_os_name: "rhel"
+        aws_instance_os_version: "8"
+        aws_instance_volume_size: 16
+        aws_instance_subnet_name: "aa-ne-sub00"
+        aws_instance_security_groups:
+          - "allow_ssh"

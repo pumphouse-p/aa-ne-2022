@@ -1,0 +1,34 @@
+---
+galaxy_info:
+  author: Devin Parrish
+  role_name: aws_instance
+  namespace: pumphouse_p.aa_ne
+  description: Manage instances in AWS
+
+  license: GPL
+
+  min_ansible_version: 2.9
+
+  galaxy_tags:
+    - aws
+    - ec2
+    - instance
+    - virtual_machine
+
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: Fedora
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+
+dependencies: []
+
+allow_duplicates: true
