@@ -33,5 +33,5 @@
 - name: "Copy static files to bucket"
   community.aws.s3_sync:
     bucket: "{{ cloud_report_publish_s3_bucket_name }}"
-    file_root: "files/"
+    file_root: "roles/cloud_report/files/"
     permission: "public-read"
