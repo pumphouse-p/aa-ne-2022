@@ -5,5 +5,5 @@ usermod -aG sudo ansible
 usermod -aG wheel ansible
 mkdir -p ~ansible/.ssh
 tee -a ~ansible/.ssh/authorized_keys << EOF
-{{ aws_key_pubkey }}
+{{ azure_instance_pubkey }}
 EOF
