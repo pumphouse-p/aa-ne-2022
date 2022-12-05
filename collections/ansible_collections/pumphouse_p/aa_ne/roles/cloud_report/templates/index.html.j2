@@ -80,6 +80,43 @@ collapsible: true
             </td>
         </tr>
 
+        <tr>
+            <td class="summary_info">
+                <div id="hostname">
+                    <img class="router_image" src="azure.png" alt="azure logo">
+                    <br><p class="hostname">Azure</p>
+                </div>
+                <div id="net_info_div">
+                <table class="net_info">
+                <tbody>
+                    <tr>
+                        <td>Azure user</td>
+                        <td class="sub_net_info">{{ azure_user | default('unknown') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Azure Resource Group</td>
+                        <td class="sub_net_info">{{ azure_resourcegroup_name | default('unknown') }}</td>
+                    </tr>
+                </tbody>
+                </table>
+
+                {% include 'ansible.html.j2' %}
+                </div>
+            </td>
+
+            <td>
+                {% include 'azure_net.html.j2' %}
+            </td>
+        </tr>
+
+        <tr>
+            <td class="summary_info">
+            <td>
+                {% include 'azure_vm.html.j2' %}
+            </td>
+        </tr>
+            
+
     </tbody>
 </table>
 
