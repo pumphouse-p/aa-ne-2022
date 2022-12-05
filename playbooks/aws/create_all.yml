@@ -23,3 +23,4 @@
         aws_instance_subnet_name: "aa-ne-sub00"
         aws_instance_security_groups:
           - "allow_ssh"
+        aws_instance_key_name: "aa_ne"
