@@ -43,6 +43,21 @@
   loop_control:
     index_var: idx
   register: __azure_instance
+  changed_when: not __azure_instance.changed
+  async: 1000
+  poll: 0
+
+- name: "Wait for instances to finish creation"
+  ansible.builtin.async_status:
+    jid: "{{ __azure_instance_result_item.ansible_job_id }}"
+  register: __azure_instance_result
+  until: __azure_instance_result.finished
+  retries: 100
+  delay: 6
+  loop: "{{ __azure_instance.results }}"
+  loop_control:
+    loop_var: __azure_instance_result_item
+  when: __azure_instance_result_item.ansible_job_id is defined
 
 - name: "Debug output"
   ansible.builtin.debug:
