@@ -45,4 +45,4 @@
 
 - name: "Output URL of report"
   ansible.builtin.debug:
-    msg: "Report has been successfully generated. Browse to http://{{ cloud_report_publish_s3_bucket_name }}.s3-website-us-east1.amazonaws.com to view."
+    msg: "Report URL: http://{{ cloud_report_publish_s3_bucket_name }}.s3-website-us-east-1.amazonaws.com."
