@@ -1,0 +1,30 @@
+---
+galaxy_info:
+  author: Devin Parrish
+  role_name: azure_net
+  namespace: pumphouse_p.aa_ne
+  description: Manage network objects on Microsoft Azure
+
+  license: GPL
+
+  min_ansible_version: 2.9
+
+  galaxy_tags:
+    - azure
+    - virtual_network
+
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: Fedora
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+
+dependencies: []

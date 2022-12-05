@@ -1,0 +1,10 @@
+---
+- name: Ensure resources are present
+  ansible.builtin.include_tasks:
+    file: present.yml
+  when: azure_resource_state == 'present'
+      
+- name: Ensure resources are absent
+  ansible.builtin.include_tasks:
+    file: absent.yml
+  when: azure_resource_state == 'absent'

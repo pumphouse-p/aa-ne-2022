@@ -1,0 +1,47 @@
+---
+azure_resourcegroup_name: ""
+azure_resource_state: present
+azure_resource_tags:
+  managed_by: ansible
+  purpose: aa_ne
+
+azure_virtualnetwork_name: "aa_ne_net"
+azure_virtualnetwork_address_prefixes_cidr: ["10.20.0.0/16"]
+azure_virtualnetwork_tags:
+  Name: "{{ azure_virtualnetwork_name }}"
+
+azure_subnet_name: "aa_ne_subnet"
+azure_subnet_address_prefix_cidr: "10.20.1.0/24"
+
+azure_securitygroup_name: "default"
+azure_securitygroup_rules:
+  - name: "http_https"
+    protocol: Tcp
+    destination_port_range:
+      - 80
+      - 443
+    access: Allow
+    direction: Inbound
+    priority: 100
+  - name: "ssh"
+    protocol: Tcp
+    destination_port_range: 22
+    access: Allow
+    direction: Inbound
+    priority: 102
+  - name: "rdp"
+    protocol: Tcp
+    destination_port_range: 3389
+    access: Allow
+    direction: Inbound
+    priority: 104
+  - name: "winrm"
+    protocol: Tcp
+    destination_port_range:
+      - 5985
+      - 5986
+    access: Allow
+    direction: Inbound
+    priority: 106
+azure_securitygroup_tags:
+  Name: "aa_ne"

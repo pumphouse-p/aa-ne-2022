@@ -1,0 +1,37 @@
+---
+- name: "Ensure virtual network exists"
+  azure.azcollection.azure_rm_virtualnetwork:
+    resource_group: "{{ azure_resourcegroup_name }}"
+    name: "{{ azure_virtualnetwork_name }}"
+    address_prefixes_cidr: "{{ azure_virtualnetwork_address_prefixes_cidr }}"
+    dns_servers: "{{ azure_virtualnetwork_dns_servers | default(omit) }}"
+    tags: "{{ azure_virtualnetwork_tags | combine(azure_resource_tags) }}"
+    state: present
+  register: __azure_virtualnetwork
+
+- name: "Ensure security groups exist"
+  azure.azcollection.azure_rm_securitygroup:
+    resource_group: "{{ azure_resourcegroup_name }}"
+    name: "{{ azure_securitygroup_name }}"
+    rules: "{{ azure_securitygroup_rules }}"
+    tags: "{{ azure_securitygroup_tags | combine(azure_resource_tags) }}"
+    state: present
+  register: __azure_securitygroup
+
+- name: "Ensure subnets exist"
+  azure.azcollection.azure_rm_subnet:
+    resource_group: "{{ azure_resourcegroup_name }}"
+    name: "{{ azure_subnet_name }}"
+    address_prefix_cidr: "{{ azure_subnet_address_prefix_cidr }}"
+    virtual_network_name: "{{ azure_virtualnetwork_name }}"
+    security_group_name: "{{ azure_securitygroup_name }}"
+    state: present
+  register: __azure_subnet
+
+- name: Debug output
+  ansible.builtin.debug:
+    var: item
+  loop:
+    - __azure_virtualnetwork
+    - __azure_securitygroup
+    - __azure_subnet

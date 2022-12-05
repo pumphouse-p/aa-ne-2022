@@ -1,0 +1,9 @@
+---
+- name: "Ensure Azure objects are configured"
+  hosts: localhost
+  become: false
+  vars:
+    azure_resource_state: "present"
+
+  roles:
+    - name: pumphouse_p.aa_ne.azure_net
