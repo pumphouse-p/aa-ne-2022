@@ -2,3 +2,4 @@
 aws_region: "us-east-2"
 aws_instance_type: "t2.micro"
 aws_instance_tags: {}
+aws_instance_purge_tags: true
