@@ -21,7 +21,7 @@
 - name: "Create instance"
   azure.azcollection.azure_rm_virtualmachine:
     resource_group: "{{ azure_resourcegroup_name }}"
-    name: "{{ azure_instance_name }}"
+    name: "{{ '%s-%d'.format(azure_instance_name, idx) }}"
     vm_size: "{{ azure_instance_size }}"
     virtual_network_name: "{{ azure_instance_network_name }}"
     subnet_name: "{{ azure_instance_subnet_name | default(omit) }}"
@@ -39,6 +39,10 @@
       sku: "{{ selected_image.sku }}"
       version: "{{ selected_image.version }}"
     custom_data: "{{ lookup('template', 'user_data.sh.j2') }}"
+  loop:
+    count: "{{ azure_instance_count }}"
+  loop_control:
+    index_var: idx
   register: __azure_instance
 
 - name: "Debug output"

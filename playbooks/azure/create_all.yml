@@ -18,3 +18,4 @@
         azure_instance_network_name: "aa_ne_net"
         azure_instance_subnet_name: "aa_ne_subnet"
         azure_instance_os: "rhel_8"
+        azure_instance_count: 3
