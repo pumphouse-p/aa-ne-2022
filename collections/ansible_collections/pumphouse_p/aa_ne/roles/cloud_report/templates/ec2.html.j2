@@ -1,0 +1,36 @@
+<!-- INTERNAL TABLE FOR EC2 Instances -->
+<div id="accordion">
+<div>
+<h3>{{ aws_region | default('unknown') }}</h3>
+<div class="net_content">
+<p class="description">There are <strong>{{ __instance_info.instances | length }}</strong> AWS EC2 instances on region {{ aws_region | default('unknown') }}
+
+<table class="net_info">
+<tbody>
+  <tr>
+    <th class="__vpc_info">{{ '%-38s'|format('Name')}}</th>
+    <th class="__vpc_info">{{ '%-28s'|format('ID') }}</th>
+    <th class="__vpc_info">{{ '%-14s'|format('Launch Time') }}</th>
+    <th class="__vpc_info">{{ '%-18s'|format('VPC ID') }}</th>
+    <th class="__vpc_info">{{ '%-18s'|format('Subnet ID') }}</th>
+    <th class="__vpc_info">{{ '%-18s'|format('IP Address') }}</th>
+    <th class="__vpc_info">{{ '%-18s'|format('State') }}</th>
+  </tr>
+  {% for ec2 in __instance_info.instances %}
+  <tr>
+    <td>{{ '%-38s'|format(ec2.tags['Name'] | default('Unspecified, missing name tag')) }}</td>
+    <td>{{ '%-28s' | format(ec2.instance_id) }}</td>
+    <td>{{ '%-14s'|format(ec2.launch_time) }}</td>
+    <td>{{ '%-18s'|format(ec2.vpc_id) }}</td>
+    <td>{{ '%-18s'|format(ec2.subnet_id) }}</td>
+    <td>{{ '%-18s'|format(ec2.private_ip_address) }}</td>
+    <td>{{ '%-18s'|format(ec2.state.name) }}</td>
+    <td>{{ '%-26s' | format(vpc.cidr_block_association_set | length | default('0')) }}</td>
+  </tr>
+  {% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- END INTERNAL TABLE FOR EC2 Instances -->
