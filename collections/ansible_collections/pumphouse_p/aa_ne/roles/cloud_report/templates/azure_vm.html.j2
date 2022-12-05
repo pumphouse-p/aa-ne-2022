@@ -19,7 +19,7 @@
     <tr>
         <td>{{ '%-38s' | format(vm.name | default('unknown')) }}</td>
         <td>{{ '%-28s' | format(vm.vm_size) }}</td>
-        <td>{{ '%-14s-%s' | format(vm.image.offer, vm.image.version) }}</td>
+        <td>{{ '%s %s' | format(vm.image.offer, vm.image.version) }}</td>
         <td>{{ '%-18s' | format(vm.power_state) }}</td>
     </tr>
     {% endfor %}
