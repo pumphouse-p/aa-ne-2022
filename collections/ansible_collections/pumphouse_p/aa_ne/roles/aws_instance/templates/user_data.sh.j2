@@ -7,3 +7,6 @@ mkdir -p ~ansible/.ssh
 tee -a ~ansible/.ssh/authorized_keys << EOF
 {{ aws_key_pubkey }}
 EOF
+tee -a /etc/sudoers.d/90-ansible-user << EOF
+ansible ALL=(ALL) NOPASSWD: ALL
+EOF
