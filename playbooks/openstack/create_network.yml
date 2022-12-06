@@ -9,5 +9,5 @@
     - name: pumphouse_p.aa_ne.openstack_net
       vars:
         openstack_networks:
-          name: "{{ openstack_network_name_survey }}"
-          is_external: "{{ openstack_network_is_external_survey }}"
+          - name: "{{ openstack_network_name_survey }}"
+            is_external: "{{ openstack_network_is_external_survey }}"

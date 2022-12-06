@@ -1,4 +1,4 @@
 ---
 openstack_networks:
-  name: my_network
-  is_external: false
+  - name: my_network
+    is_external: false
