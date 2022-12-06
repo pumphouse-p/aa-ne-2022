@@ -20,7 +20,7 @@
 
 - name: "Wait for instances to finish creation"
   ansible.builtin.async_status:
-    jid: "{{ __openstack_instance_result.ansible_job_id }}"
+    jid: "{{ __openstack_instance_result_item.ansible_job_id }}"
   register: __openstack_instance_result
   until: __openstack_instance_result.finished
   retries: 100
