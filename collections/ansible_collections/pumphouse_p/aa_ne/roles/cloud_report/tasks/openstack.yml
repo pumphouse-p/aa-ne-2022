@@ -7,6 +7,10 @@
   ansible.builtin.debug:
     var: __os_net_info
 
+- name: "Retrieve subnet information"
+  openstack.cloud.subnets_info:
+  register: __os_subnet_info
+
 - name: "Retrieve instance information"
   openstack.cloud.server_info:
   register: __os_server_info
