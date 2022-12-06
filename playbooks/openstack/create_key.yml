@@ -2,6 +2,8 @@
 - name: "Ensure Nova key configured"
   hosts: localhost
   become: false
+  vars:
+    openstack_resource_state: present
 
   roles:
     - name: pumphouse_p.aa_ne.openstack_key
