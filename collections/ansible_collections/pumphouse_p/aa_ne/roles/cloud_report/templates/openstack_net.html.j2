@@ -2,25 +2,23 @@
 <h3>OpenStack Network Information</h3>
 <div id="accordion">
 <div>
-<h3>{{ azure_resourcegroup_name | default('unknown') }}</h3>
+<h3>{{ project_name | default('unknown') }}</h3>
 <div class="net_content">
-<p class="description">There are <strong>{{ __azure_vnet_info.virtualnetworks | length }}</strong> Azure virtual networks configured in the {{ azure_resourcegroup_name | default('unkown') }} resource group
+<p class="description">There are <strong>{{ __os_net_info.openstack_networks | length }}</strong> networks configured in the {{ project_name | default('unknown') }} project
 
 <table class="net_info">
 <tbody>
     <tr>
-        <th class="__vpc_info">{{ '%-38s'|format('VNet name') }}</th>
-        <th class="__vpc_info">{{ '%-28s'|format('VNet State') }}</th>
-        <th class="__vpc_info">{{ '%-14s'|format('VNet Address') }}</th>
-        <th class="__vpc_info">{{ '%-18s'|format('VNet Subnets') }}</th>
+        <th class="__vpc_info">{{ '%-38s'|format('Network Name') }}</th>
+        <th class="__vpc_info">{{ '%-28s'|format('Is External') }}</th>
+        <th class="__vpc_info">{{ '%-14s'|format('Subnets') }}</th>
     </tr>
 
-    {% for vnet in __azure_vnet_info.virtualnetworks %}
+    {% for net in __os_net_info.openstack_networks %}
     <tr>
-        <td>{{ '%-38s' | format(vnet.name | default('unknown')) }}</td>
-        <td>{{ '%-28s' | format(vnet.provisioning_state) }}</td>
-        <td>{{ '%-14s' | format(vnet.address_prefixes | join(',')) }}</td>
-        <td>{{ '%-18s' | format(vnet.subnets | length) }}</td>
+        <td>{{ '%-38s' | format(net.name | default('unknown')) }}</td>
+        <td>{{ '%-28s' | format(net.router:external) }}</td>
+        <td>{{ '%-14s' | format(net.subnets | length }}</td>
     </tr>
     {% endfor %}
 </tbody>

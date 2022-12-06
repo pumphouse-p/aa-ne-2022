@@ -106,6 +106,7 @@ collapsible: true
         {% endif %}
 
         {% if 'openstack' in cloud_report_targets %}
+        {% set project_name = __os_config.ansible_facts.openstack.clouds.0.auth.project_name %}
         <tr>
             <td class="summary_info">
                 <div id="hostname">
@@ -120,7 +121,7 @@ collapsible: true
                     </tr>
                     <tr>
                         <td>OpenStack Project</td>
-                        <td class="sub_net_info">{{ __os_config.ansible_facts.openstack.clouds.0.auth.project_name | default('unknown') }}</td>
+                        <td class="sub_net_info">{{ project_name | default('unknown') }}</td>
                     </tr>
                     <tr>
                         <td>OpenStack Domain</td>
@@ -128,7 +129,20 @@ collapsible: true
                     </tr>
                 </tbody>
                 </table>
+
+                {% include 'ansible.html.j2' %}
                 </div>
+            </td>
+
+            <td>
+                {% include 'openstack_net.html.j2' %}
+            </td>
+        </tr>
+
+        <tr>
+            <td class="summary_info">
+            <td>
+                {% include 'openstack_vm.html.j2' %}
             </td>
         </tr>
         {% endif %}
