@@ -8,7 +8,7 @@
   roles:
     - name: pumphouse_p.aa_ne.snow_change_request
       vars:
-        close_code: "unsuccessful"
-        close_notes: >
+        snow_change_request_close_code: "unsuccessful"
+        snow_change_request_close_notes: >
           Change request "{{ snow_change_request_num }}" was unsuccessfully implemented
           via Ansible Automation Platform.
