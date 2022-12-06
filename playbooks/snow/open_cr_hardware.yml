@@ -5,14 +5,35 @@
   vars:
     snow_change_request_state: "open"
 
+  pre_tasks:
+    - name: "Initialize some vars when triggered via webhook"
+      ansible.builtin.set_fact:
+        scm_repo_url: "{{ awx_webhook_payload.repository.url }}"
+        scm_event_type: "{{ awx_webhook_event_type }}"
+        scm_push_user: "{{ awx_webhook_payload.pusher.name }}"
+        scm_head_commit_url: "{{ awx_webhook_payload.head_commit.url }}"
+        scm_head_commit_user: "{{ awx_webhook_payload.head_commit.author.name }}"
+        scm_head_commit_timestamp: "{{ awx_webhook_payload.head_commit.timestamp }}"
+        scm_head_commit_msg: "{{ awx_webhook_payload.head_commit.message }}"
+        scm_commit_log: "{{ awx_webhook_payload.commits }}"
+      when: awx_webhook_event_type is defined
+
   roles:
     - name: pumphouse_p.aa_ne.snow_change_request
       vars:
         snow_change_request_category: "hardware"
         snow_change_request_short_description: >
-          Implement changes that were committed to source control
-        snow_change_request_description: >
-          Implement changes that were committed to source control
+          Apply "{{ scm_event_type }}" from SCM repo "{{ scm_repo_url }}"
+        snow_change_request_description: |
+          The user "{{ scm_push_user }}" generated a "{{ scm_event_type }}" event on the SCM repo found at "{{ scm_repo_url }}".
+
+          The head commit was made by "{{ scm_head_commit_user }}" at "{{ scm_head_commit_timestamp }}".
+
+          Head commit URL: "{{ scm_head_commit_url }}"
+          Head commit message: "{{ scm_head_commit_msg }}"
+
+          Commit Log: "{{ scm_commit_log | to_nice_json }}"
+
         snow_change_request_impact: "medium"
         snow_change_request_priority: "moderate"
         snow_change_request_risk: "low"
