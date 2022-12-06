@@ -46,7 +46,7 @@
     </tr>
 
     {% for subnet in net.subnets %}
-    {% set subnet_info = __os_subnet_info | selectattr('id', 'is', subnet) %}
+    {% set subnet_info = __os_subnet_info | selectattr('id', '==', subnet) %}
     <tr>
         <td>{{ subnet_info }}</td>
         <td>{{ '%-38s' | format(subnet.name | default('unknown')) }}</td>
