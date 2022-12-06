@@ -67,7 +67,6 @@ collapsible: true
 
 
             </td>
-
             <td>
             {% include 'vpc.html.j2' %}
             </td>
@@ -80,6 +79,7 @@ collapsible: true
             </td>
         </tr>
 
+        {% if 'azure' in cloud_report_targets %}
         <tr>
             <td class="summary_info">
                 <div id="hostname">
@@ -115,6 +115,7 @@ collapsible: true
                 {% include 'azure_vm.html.j2' %}
             </td>
         </tr>
+        {% endif %}
             
 
     </tbody>
