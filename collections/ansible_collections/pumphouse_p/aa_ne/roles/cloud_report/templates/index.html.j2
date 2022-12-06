@@ -116,15 +116,15 @@ collapsible: true
                 <tbody>
                     <tr>
                         <td>OpenStack User</td>
-                        <td class="sub_net_info">{{ __os_config.clouds.0.auth.username | default('unknown') }}</td>
+                        <td class="sub_net_info">{{ __os_config.ansible_facts.openstack.clouds.0.auth.username | default('unknown') }}</td>
                     </tr>
                     <tr>
                         <td>OpenStack Project</td>
-                        <td class="sub_net_info">{{ __os_config.clouds.0.auth.project_name | default('unknown') }}</td>
+                        <td class="sub_net_info">{{ __os_config.ansible_facts.openstack.clouds.0.auth.project_name | default('unknown') }}</td>
                     </tr>
                     <tr>
                         <td>OpenStack Domain</td>
-                        <td class="sub_net_info">{{ __os_config.clouds.0.auth.project_domain_name | default('unknown') }}</td>
+                        <td class="sub_net_info">{{ __os_config.ansible_facts.openstack.clouds.0.auth.project_domain_name | default('unknown') }}</td>
                     </tr>
                 </tbody>
                 </table>
