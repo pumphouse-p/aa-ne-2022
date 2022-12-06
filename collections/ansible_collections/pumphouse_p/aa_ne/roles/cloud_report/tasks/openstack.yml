@@ -18,7 +18,3 @@
 - name: "Retrieve config information"
   openstack.cloud.config:
   register: __os_config
-
-- name: "Debug output"
-  ansible.builtin.debug:
-    var: __os_config
