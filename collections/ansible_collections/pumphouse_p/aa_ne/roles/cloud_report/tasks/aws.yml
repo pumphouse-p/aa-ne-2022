@@ -19,3 +19,8 @@
     filters:
       tag:purpose: "aa_ne"
   register: __igw_info
+
+- name: "Grab boto3 version"
+  ansible.builtin.set_fact:
+    boto_version: >-
+      "{{ lookup('pipe', ansible_playbook_python ~ ' -c "import boto3; print(boto3.__version__)"') }}"
