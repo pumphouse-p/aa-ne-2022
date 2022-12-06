@@ -43,14 +43,23 @@
     <tr>
         <th class="__vpc_info">{{ '%-38s'|format('Subnet name') }}</th>
         <th class="__vpc_info">{{ '%-28s'|format('Subnet CIDR') }}</th>
+        <th class="__vpc_info">{{ '%-28s'|format('Subnet Gateway') }}</th>
+        <th class="__vpc_info">{{ '%-28s'|format('Subnet Allocation Start') }}</th>
+        <th class="__vpc_info">{{ '%-28s'|format('Subnet Allocation End') }}</th>
+        <th class="__vpc_info">{{ '%-28s'|format('Subnet Creation Time') }}</th>
     </tr>
 
     {% for subnet in net.subnets %}
     {% set subnet_info = __os_subnet_info.openstack_subnets | selectattr('id', '==', subnet) %}
     <tr>
-        <td>{{ subnet_info }}</td>
         <td>{{ '%-38s' | format(subnet.name | default('unknown')) }}</td>
         <td>{{ '%-38s' | format(subnet.address_prefix | default('unknown')) }}</td>
+        <td>{{ '%-38s' | format(subnet_info.0.name) }}</th>
+        <td>{{ '%-28s' | format(subnet_info.0.cidr) }}</th>
+        <td>{{ '%-28s' | format(subnet_info.0.gateway_ip | default('N/A')) }}</th>
+        <td>{{ '%-28s' | format(subnet_info.0.allocation_pools.0.start | default('N/A')) }}</th>
+        <td>{{ '%-28s' | format(subnet_info.0.allocation_pools.0.end | default('N/A')) }}</th>
+        <td>{{ '%-28s' | format(subnet_info.0.created_at) }}</th>
     </tr>
     {% endfor %}
 </tbody>
