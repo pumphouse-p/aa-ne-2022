@@ -10,4 +10,8 @@
       vars:
         openstack_networks:
           - name: "{{ openstack_network_name_survey }}"
-            is_external: "{{ openstack_network_is_external_survey }}"
+            is_external: "{{ openstack_network_is_external_survey | bool }}"
+        openstack_subnets:
+          - name: "{{ openstack_subnet_name_survey }}"
+            network_name: "{{ openstack_network_name_survey }}"
+            cidr: "{{ openstack_subnet_cidr_survey }}"

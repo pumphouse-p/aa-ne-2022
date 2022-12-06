@@ -2,3 +2,8 @@
 openstack_networks:
   - name: my_network
     is_external: false
+
+openstack_subnets:
+  - name: my_subnet
+    network_name: my_network
+    cidr: 192.168.222.0/24

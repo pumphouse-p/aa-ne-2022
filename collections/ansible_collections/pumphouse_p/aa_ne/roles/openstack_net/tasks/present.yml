@@ -1,5 +1,5 @@
 ---
-- name: "Ensure network exists in Neutron"
+- name: "Ensure networks exist in Neutron"
   openstack.cloud.network:
     name: "{{ network.name }}"
     state: present
@@ -14,3 +14,13 @@
   loop: "{{ openstack_networks }}"
   loop_control:
     loop_var: network
+
+- name: "Ensure subnets exist in Neutron"
+  openstack.cloud.subnet:
+    name: "{{ subnet.name }}"
+    state: present
+    network_name: "{{ subnet.network_name }}"
+    cidr: "{{ subnet.cidr }}"
+  loop: "{{ openstack_subnets }}"
+  loop_control:
+    loop_var: subnet
