@@ -1,0 +1,8 @@
+---
+openstack_instance_name: "my_vm"
+openstack_instance_image: "cirros"
+openstack_instance_network: "my_net"
+openstack_instance_key_name: "my_key"
+openstack_instance_flavor: "m1.tiny"
+openstack_instance_boot_from_volume: false
+openstack_instance_count: 1

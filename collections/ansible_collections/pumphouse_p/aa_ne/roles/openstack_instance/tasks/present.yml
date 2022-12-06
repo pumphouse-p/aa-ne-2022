@@ -1,0 +1,37 @@
+---
+- name: "Create instances"
+  openstack.cloud.server:
+    name: "{{ '%s-%02d' | format(openstack_instance_name, idx) }}"
+    image: "{{ openstack_instance_image }}"
+    network: "{{ openstack_instance_network }}"
+    key_name: "{{ openstack_instance_key_name }}"
+    flavor: "{{ openstack_instance_flavor }}"
+    boot_from_volume: "{{ openstack_instance_boot_from_volume }}"
+    state: present
+  loop: "{{ range(0, openstack_instance_count) | list }}"
+  loop_control:
+    index_var: idx
+  register: __openstack_instance
+  changed_when: not __openstack_instance.changed
+  async: 1000
+  poll: 0
+  vars:
+    ansible_async_dir: '/tmp/.ansible_sync'
+
+- name: "Wait for instances to finish creation"
+  ansible.builtin.async_status:
+    jid: "{{ __openstack_instance_result.ansible_job_id }}"
+  register: __openstack_instance_result
+  until: __openstack_instance_result.finished
+  retries: 100
+  delay: 6
+  loop: "{{ __openstack_instance.results }}"
+  loop_control:
+    loop_var: __openstack_instance_result_item
+  when: __openstack_instance_result_item.ansible_job_id is defined
+  vars:
+    ansible_async_dir: '/tmp/.ansible_sync'
+
+- name: "Debug output"
+  ansible.builtin.debug:
+    var: __openstack_instance

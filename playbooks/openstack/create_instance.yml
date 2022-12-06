@@ -1,0 +1,15 @@
+---
+- name: "Boot nova compute instances"
+  hosts: localhost
+  become: false
+  vars:
+    openstack_resource_state: present
+
+  roles:
+    - name: pumphouse_p.aa_ne.openstack_instance
+      vars:
+        openstack_instance_name: "{{ openstack_instance_name_survey }}"
+        openstack_instance_image: "{{ openstack_instance_image_survey }}"
+        openstack_instance_network: "{{ openstack_instance_network_survey }}"
+        openstack_instance_key_name: "{{ openstack_instance_key_name }}"
+        openstack_instance_flavor: "{{ openstack_instance_flavor_survey }}"

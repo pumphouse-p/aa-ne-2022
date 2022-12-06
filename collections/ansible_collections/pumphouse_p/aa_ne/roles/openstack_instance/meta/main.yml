@@ -1,0 +1,33 @@
+---
+galaxy_info:
+  author: Devin Parrish
+  role_name: openstack_instance
+  namespace: pumphouse_p.aa_ne
+  description: An Ansible Role that manages Nova compute instances.
+
+  license: GPL
+
+  min_ansible_version: 2.9
+
+  galaxy_tags:
+    - openstack
+    - nova
+    - iaas
+    - instance
+    - virtualization
+
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: Fedora
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+
+dependencies: []
