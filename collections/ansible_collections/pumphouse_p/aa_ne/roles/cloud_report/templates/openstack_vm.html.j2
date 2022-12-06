@@ -2,9 +2,9 @@
 <h3>OpenStack Instance Information</h3>
 <div id="accordion">
 <div>
-<h3>{{ azure_resourcegroup_name | default('unknown') }}</h3>
+<h3>{{ project_name | default('unknown') }}</h3>
 <div class="net_content">
-<p class="description">There are <strong>{{ __azure_vm_info.vms | length }}</strong> Azure virtual machines configured in the {{ azure_resourcegroup_name | default('unkown') }} resource group
+<p class="description">There are <strong>{{ __os_server_info.openstack_servers | length }}</strong> Nova compute instances in the {{ project_name | default('unknown') }} project
 
 <table class="net_info">
 <tbody>
