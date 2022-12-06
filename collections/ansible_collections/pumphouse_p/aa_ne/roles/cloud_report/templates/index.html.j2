@@ -32,6 +32,7 @@ collapsible: true
         </tr>
     </thead>
     <tbody>
+        {% if 'aws' in cloud_report_targets %}
         <tr>
             <td class="summary_info">
               <div id="hostname">
@@ -78,6 +79,7 @@ collapsible: true
             {% include 'ec2.html.j2' %}
             </td>
         </tr>
+        {% endif %}
 
         {% if 'azure' in cloud_report_targets %}
         <tr>
