@@ -7,6 +7,7 @@
     key_name: "{{ openstack_instance_key_name }}"
     flavor: "{{ openstack_instance_flavor }}"
     boot_from_volume: "{{ openstack_instance_boot_from_volume }}"
+    auto_ip: "{{ openstack_instance_autoassign_fip }}"
     state: present
   loop: "{{ range(0, openstack_instance_count) | list }}"
   loop_control:

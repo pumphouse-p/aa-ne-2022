@@ -6,3 +6,4 @@ openstack_instance_key_name: "my_key"
 openstack_instance_flavor: "m1.tiny"
 openstack_instance_boot_from_volume: false
 openstack_instance_count: 1
+openstack_instance_autoassign_fip: false
