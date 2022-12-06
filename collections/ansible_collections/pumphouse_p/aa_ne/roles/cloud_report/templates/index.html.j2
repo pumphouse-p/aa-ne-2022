@@ -44,22 +44,8 @@ collapsible: true
               <tbody>
                 <tr>
                   <td>Boto3 Version</td>
-                  <td class="sub_net_info">{{ py_cmd | default ('unknown')}}</td>
+                  <td class="sub_net_info">{{ boto_version | default ('unknown')}}</td>
                 </tr>
-                <!--
-                <tr>
-                  <td>AWS user</td>
-                  <td class="sub_net_info">{{ aws_user | default('unknown') }}</td>
-                </tr>
-                <tr>
-                  <td>Account ID</td>
-                  <td class="sub_net_info">{{ whoami.account | default('unknown') }}</td>
-                </tr>
-                <tr>
-                  <td>Account Alias</td>
-                  <td class="sub_net_info">{{ whoami.account_alias | default ('unknown')}}</td>
-                </tr>
-                -->
               </tbody>
               </table>
 
