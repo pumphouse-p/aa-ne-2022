@@ -13,3 +13,4 @@
         openstack_instance_network: "{{ openstack_instance_network_survey }}"
         openstack_instance_key_name: "{{ openstack_instance_key_name }}"
         openstack_instance_flavor: "{{ openstack_instance_flavor_survey }}"
+        openstack_instance_count: "{{ openstack_instance_count_survey }}"
