@@ -52,8 +52,6 @@
     {% for subnet in net.subnets %}
     {% set subnet_info = __os_subnet_info.openstack_subnets | selectattr('id', '==', subnet) %}
     <tr>
-        <td>{{ '%-38s' | format(subnet.name | default('unknown')) }}</td>
-        <td>{{ '%-38s' | format(subnet.address_prefix | default('unknown')) }}</td>
         <td>{{ '%-38s' | format(subnet_info.0.name) }}</th>
         <td>{{ '%-28s' | format(subnet_info.0.cidr) }}</th>
         <td>{{ '%-28s' | format(subnet_info.0.gateway_ip | default('N/A')) }}</th>
