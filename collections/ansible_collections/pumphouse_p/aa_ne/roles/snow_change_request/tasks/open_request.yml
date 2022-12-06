@@ -1,0 +1,32 @@
+---
+- name: "Open change request"
+  servicenow.itsm.change_request:
+    category: "{{ snow_change_request_category }}"
+    description: "{{ snow_change_request_description }}"
+    impact: "{{ snow_change_request_impact }}"
+    priority: "{{ snow_change_request_priority }}"
+    risk: "{{ snow_change_request_risk }}"
+    short_description: "{{ snow_change_request_short_description }}"
+    state: new
+    type: "{{ snow_change_request_type }}"
+    urgency: "{{ snow_change_request_urgency }}"
+    assignment_group: "Service Desk"
+  register: snow_change
+
+- name: "Schedule change request"
+  servicenow.itsm.change_request:
+    number: "{{ snow_change.record.number }}"
+    assignment_group: "Service Desk"
+    state: scheduled
+
+- name: "Implement change request"
+  servicenow.itsm.change_request:
+    number: "{{ snow_change.record.number }}"
+    assignment_group: "Service Desk"
+    state: implement
+
+- name: "Set stats for downstream consumption"
+  ansible.builtin.set_stats:
+    data:
+      snow_change_request_num: "{{ snow_change.record.number }}"
+    aggregate: false

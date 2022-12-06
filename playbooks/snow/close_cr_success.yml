@@ -1,0 +1,14 @@
+---
+- name: "Close change request as a success"
+  hosts: localhost
+  become: false
+  vars:
+    snow_change_request_state: "close"
+
+  roles:
+    - name: pumphouse_p.aa_ne.snow_change_request
+      vars:
+        close_code: "successful"
+        close_notes: >
+          Change request "{{ snow_change_request_num }}" was successfully implemented
+          via Ansible Automation Platform.

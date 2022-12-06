@@ -1,0 +1,14 @@
+---
+- name: "Review change request"
+  servicenow.itsm.change_request:
+    number: "{{ snow_change_request_num }}"
+    assignment_group: "Service Desk"
+    state: review
+
+- name: "Close change request"
+  servicenow.itsm.change_request:
+    number: "{{ snow_change_request_num }}"
+    close_code: "{{ snow_change_request_close_code }}"
+    close_notes: "{{ snow_change_request_close_notes }}"
+    assignment_group: "Service Desk"
+    state: closed

@@ -1,0 +1,20 @@
+---
+- name: "Open hardware change request"
+  hosts: localhost
+  become: false
+  vars:
+    snow_change_request_state: "open"
+
+  roles:
+    - name: pumphouse_p.aa_ne.snow_change_request
+      vars:
+        snow_change_request_category: "hardware"
+        snow_change_request_short_description: >
+          Implement changes that were committed to source control
+        snow_change_request_description: >
+          Implement changes that were committed to source control
+        snow_change_request_impact: "medium"
+        snow_change_request_priority: "medium"
+        snow_change_request_risk: "low"
+        snow_change_request_type: "normal"
+        snow_change_request_urgency: "high"
