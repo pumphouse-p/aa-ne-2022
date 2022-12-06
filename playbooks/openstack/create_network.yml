@@ -4,7 +4,7 @@
   become: false
 
   roles:
-    - name: pumphouse_p.aa_ne.neutron_net
+    - name: pumphouse_p.aa_ne.openstack_net
       vars:
         openstack_networks:
           name: "{{ openstack_network_name_survey }}"
