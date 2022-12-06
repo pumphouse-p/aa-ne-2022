@@ -22,7 +22,7 @@
         <td>{{ '%-38s' | format(server.name) }}</td>
         <td>{{ '%-38s' | format(server.flavor.original_name) }}</td>
         <td>{{ '%-28s' | format(server.private_v4) }}</td>
-        <td>{{ '%-14s' | format(server.hypervisor) }}</td>
+        <td>{{ '%-14s' | format(server.hypervisor_hostname) }}</td>
         <td>{{ '%-14s' | format(server.vm_state) }}</td>
         <td>{{ '%-14s' | format(server.launched_at) }}</td>
     </tr>
