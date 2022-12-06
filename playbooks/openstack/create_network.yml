@@ -1,0 +1,11 @@
+---
+- name: "Ensure Neutron networking is present"
+  hosts: localhost
+  become: false
+
+  roles:
+    - name: pumphouse_p.aa_ne.neutron_net
+      vars:
+        openstack_networks:
+          name: "{{ openstack_network_name_survey }}"
+          is_external: "{{ openstack_network_is_external }}"

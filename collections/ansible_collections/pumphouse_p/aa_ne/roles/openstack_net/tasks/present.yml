@@ -1,0 +1,16 @@
+---
+- name: "Ensure network exists in Neutron"
+  openstack.cloud.network:
+    name: "{{ network.name }}"
+    state: present
+    external: "{{ network.is_external | default(omit) }}"
+    mtu_size: "{{ network.mtu_size | default(omit) }}"
+    project: "{{ network.project | default(omit) }}"
+    provider_network_type: "{{ network.provider_network_type | default(omit) }}"
+    provider_physical_network: "{{ network.provider_physical_network | default(omit) }}"
+    provider_segmentation_id: "{{ network.provider_segmentation_id | default(omit) }}"
+    region_name: "{{ network.region_name | default(omit) }}"
+    shared: "{{ network.is_shared | default(omit) }}"
+  loop: "{{ openstack_networks }}"
+  loop_control:
+    loop_var: network
