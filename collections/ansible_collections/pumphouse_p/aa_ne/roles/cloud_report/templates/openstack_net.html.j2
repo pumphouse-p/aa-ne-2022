@@ -12,13 +12,17 @@
         <th class="__vpc_info">{{ '%-38s'|format('Network Name') }}</th>
         <th class="__vpc_info">{{ '%-28s'|format('Is External') }}</th>
         <th class="__vpc_info">{{ '%-14s'|format('Subnets') }}</th>
+        <th class="__vpc_info">{{ '%-14s'|format('MTU') }}</th>
+        <th class="__vpc_info">{{ '%-14s'|format('Status') }}</th>
     </tr>
 
     {% for net in __os_net_info.openstack_networks %}
     <tr>
         <td>{{ '%-38s' | format(net.name | default('unknown')) }}</td>
         <td>{{ '%-28s' | format(net.router:external) }}</td>
-        <td>{{ '%-14s' | format(net.subnets | length }}</td>
+        <td>{{ '%-14s' | format(net.subnets | length) }}</td>
+        <td>{{ '%-14s' | format(net.mtu) }}</td>
+        <td>{{ '%-14s' | format(net.status | capitalize) }}</td>
     </tr>
     {% endfor %}
 </tbody>
