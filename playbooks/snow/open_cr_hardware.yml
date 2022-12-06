@@ -14,7 +14,7 @@
         snow_change_request_description: >
           Implement changes that were committed to source control
         snow_change_request_impact: "medium"
-        snow_change_request_priority: "medium"
+        snow_change_request_priority: "moderate"
         snow_change_request_risk: "low"
         snow_change_request_type: "normal"
         snow_change_request_urgency: "high"

@@ -13,6 +13,18 @@
     assignment_group: "Service Desk"
   register: snow_change
 
+- name: "Assess change request"
+  servicenow.itsm.change_request:
+    number: "{{ snow_change.record.number }}"
+    assignment_group: "Service Desk"
+    state: assess
+
+- name: "Authorize change request"
+  servicenow.itsm.change_request:
+    number: "{{ snow_change.record.number }}"
+    assignment_group: "Service Desk"
+    state: authorize
+
 - name: "Schedule change request"
   servicenow.itsm.change_request:
     number: "{{ snow_change.record.number }}"
