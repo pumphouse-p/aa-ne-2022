@@ -10,17 +10,20 @@
 <tbody>
     <tr>
         <th class="__vpc_info">{{ '%-38s'|format('Name') }}</th>
-        <th class="__vpc_info">{{ '%-38s'|format('Size') }}</th>
-        <th class="__vpc_info">{{ '%-28s'|format('Image') }}</th>
+        <th class="__vpc_info">{{ '%-38s'|format('Flavor') }}</th>
+        <th class="__vpc_info">{{ '%-28s'|format('IP Address') }}</th>
+        <th class="__vpc_info">{{ '%-14s'|format('Hypervisor') }}</th>
         <th class="__vpc_info">{{ '%-14s'|format('State') }}</th>
+        <th class="__vpc_info">{{ '%-14s'|format('Launch Time') }}</th>
     </tr>
 
-    {% for vm in __azure_vm_info.vms %}
+    {% for server in __os_server_info.openstack_servers %}
     <tr>
-        <td>{{ '%-38s' | format(vm.name | default('unknown')) }}</td>
-        <td>{{ '%-28s' | format(vm.vm_size) }}</td>
-        <td>{{ '%s %s' | format(vm.image.offer, vm.image.version) }}</td>
-        <td>{{ '%-18s' | format(vm.power_state) }}</td>
+        <td>{{ '%-38s' | format(server.name) }}</td>
+        <td>{{ '%-38s' | format(server.flavor.original_name) }}</td>
+        <td>{{ '%-28s' | format(server.private_v4) }}</td>
+        <td>{{ '%-14s' | format(server.hypervisor) }}</td>
+        <td>{{ '%-14s' | format(server.launched_at) }}</td>
     </tr>
     {% endfor %}
 </tbody>
