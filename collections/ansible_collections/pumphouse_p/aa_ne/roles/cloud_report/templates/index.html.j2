@@ -116,7 +116,7 @@ collapsible: true
                 <tbody>
                     <tr>
                         <td>OpenStack User</td>
-                        <td class="sub_net_info">{{ lookup('ansible.builtin.env', 'OS_USERNAME') | default('unknown') }}</td>
+                        <td class="sub_net_info">{{ lookup('env', 'OS_USERNAME') | default('unknown') }}</td>
                     </tr>
                 </tbody>
                 </table>
