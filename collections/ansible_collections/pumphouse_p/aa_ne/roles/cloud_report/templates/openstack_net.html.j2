@@ -32,12 +32,12 @@
 </div>
 
 <h3>OpenStack Subnet Information</h3>
-{% for vnet in __azure_vnet_info.virtualnetworks %}
+{% for net in __os_net_info.openstack_networks %}
 <div id="accordion">
 <div>
-<h3>{{ vnet.name }}</h3>
+<h3>{{ net.name }}</h3>
 <div class="net_content">
-<p class="description">There are <strong>{{ vnet.subnets | length }}</strong> Azure virtual subnets configured in the {{ vnet.name | default('unknown') }} virtual network
+<p class="description">There are <strong>{{ net.subnets | length }}</strong> subnets configured in the {{ net.name | default('unknown') }} network
 <table class="net_info">
 <tbody>
     <tr>
@@ -45,8 +45,10 @@
         <th class="__vpc_info">{{ '%-28s'|format('Subnet CIDR') }}</th>
     </tr>
 
-    {% for subnet in vnet.subnets %}
+    {% for subnet in net.subnets %}
+    {% set subnet_info = __os_subnet_info | selectattr('id', 'is', subnet) %}
     <tr>
+        <td>{{ subnet_info }}</td>
         <td>{{ '%-38s' | format(subnet.name | default('unknown')) }}</td>
         <td>{{ '%-38s' | format(subnet.address_prefix | default('unknown')) }}</td>
     </tr>
