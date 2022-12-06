@@ -46,7 +46,7 @@
     </tr>
 
     {% for subnet in net.subnets %}
-    {% set subnet_info = __os_subnet_info | selectattr('id', '==', subnet) %}
+    {% set subnet_info = __os_subnet_info.openstack_subnets | selectattr('id', '==', subnet) %}
     <tr>
         <td>{{ subnet_info }}</td>
         <td>{{ '%-38s' | format(subnet.name | default('unknown')) }}</td>
@@ -59,4 +59,4 @@
 </div>
 </div>
 {% endfor %}
-<!-- END INTERNAL TABLE FOR Azure Subnets -->
+<!-- END INTERNAL TABLE FOR OpenStack Networks -->
