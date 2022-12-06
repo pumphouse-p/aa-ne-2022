@@ -8,4 +8,4 @@
       vars:
         openstack_networks:
           name: "{{ openstack_network_name_survey }}"
-          is_external: "{{ openstack_network_is_external }}"
+          is_external: "{{ openstack_network_is_external_survey }}"
