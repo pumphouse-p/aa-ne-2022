@@ -36,8 +36,7 @@ collapsible: true
         <tr>
             <td class="summary_info">
               <div id="hostname">
-              <img class="router_image" src="aws.png" alt="picture of cloud">
-              <br><p class="hostname">AWS</p>
+              <img class="router_image" src="aws.png" alt="aws logo">
             </div>
               <div id="net_info_div">
               <table class="net_info">
@@ -74,7 +73,6 @@ collapsible: true
             <td class="summary_info">
                 <div id="hostname">
                     <img class="router_image" src="azure.png" alt="azure logo">
-                    <br><p class="hostname">Azure</p>
                 </div>
                 <div id="net_info_div">
                 <table class="net_info">
@@ -113,6 +111,14 @@ collapsible: true
                 <div id="hostname">
                     <img class="router_image" src="openstack.png" alt="openstack logo" class="center">
                 </div>
+                <div id="net_info_div">
+                <table class="net_info">
+                <tbody>
+                    <tr>
+                        <td>OpenStack User</td>
+                        <td class="sub_net_info">{{ lookup('ansible.builtin.env', 'OS_USERNAME') | default('unknown') }}</td>
+                    </tr>
+                </tbody>
             </td>
         </tr>
         {% endif %}
