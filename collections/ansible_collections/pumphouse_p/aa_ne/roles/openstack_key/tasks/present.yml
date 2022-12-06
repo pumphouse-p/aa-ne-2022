@@ -1,0 +1,16 @@
+---
+- name: "Load public key from file"
+  ansible.builtin.set_fact:
+    openstack_pubkey: "{{ lookup('file', openstack_pubkey_path) }}"
+  when: openstack_pubkey_path is defined
+
+- name: "Ensure keypair exists with desired configuration"
+  openstack.cloud.keypair:
+    name: "{{ openstack_key_name }}"
+    public_key: "{{ openstack_pubkey }}"
+    state: present
+  register: __keypair
+
+- name: "Debug output"
+  ansible.builtin.debug:
+    var: __keypair

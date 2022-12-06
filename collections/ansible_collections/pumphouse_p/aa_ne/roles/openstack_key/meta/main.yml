@@ -1,0 +1,31 @@
+---
+galaxy_info:
+  author: Devin Parrish
+  role_name: openstack_key
+  namespace: pumphouse_p.aa_ne
+  description: Upload a key for use with nova-compute instances.
+
+  license: GPL
+
+  min_ansible_version: 2.9
+
+  galaxy_tags:
+    - openstack
+    - nova
+    - iaas
+
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: Fedora
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+
+dependencies: []

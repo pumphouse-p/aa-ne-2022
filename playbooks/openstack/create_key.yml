@@ -1,0 +1,10 @@
+---
+- name: "Ensure Nova key configured"
+  hosts: localhost
+  become: false
+
+  roles:
+    - name: pumphouse_p.aa_ne.openstack_key
+      vars:
+        openstack_key_name: "{{ openstack_key_name_survey }}"
+        openstack_pubkey: "{{ openstack_pubkey_survey }}"
