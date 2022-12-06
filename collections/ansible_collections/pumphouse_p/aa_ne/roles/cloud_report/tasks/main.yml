@@ -9,6 +9,11 @@
     file: "azure.yml"
   when: '"azure" in cloud_report_targets'
 
+- name: "Gather OpenStack related information"
+  ansible.builtin.include_tasks:
+    file: "openstack.yml"
+  when: '"openstack" in cloud_report_targets'
+
 - name: "Build and publish report"
   ansible.builtin.include_tasks:
     file: "build_publish.yml"

@@ -106,7 +106,16 @@ collapsible: true
             </td>
         </tr>
         {% endif %}
-            
+
+        {% if 'openstack' in cloud_report_targets %}
+        <tr>
+            <td class="summary_info">
+                <div id="hostname">
+                    <img class="router_image" src="openstack.png" alt="openstack logo">
+                    <br><p class="hostname">OpenStack</p>
+                </div>
+
+        </tr>
 
     </tbody>
 </table>

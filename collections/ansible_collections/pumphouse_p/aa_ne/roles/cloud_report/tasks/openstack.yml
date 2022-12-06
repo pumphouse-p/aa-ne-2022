@@ -1,0 +1,16 @@
+---
+- name: "Retrieve network information"
+  openstack.cloud.networks_info:
+  register: __os_net_info
+
+- name: "Debug output"
+  ansible.builtin.debug:
+    var: __os_net_info
+
+- name: "Retrieve instance information"
+  openstack.cloud.server_info:
+  register: __os_server_info
+
+- name: "Debug output"
+  ansible.builtin.debug:
+    var: __os_server_info
