@@ -19,7 +19,7 @@
     {% for net in __os_net_info.openstack_networks %}
     <tr>
         <td>{{ '%-38s' | format(net.name | default('unknown')) }}</td>
-        <td>{{ '%-28s' | format(net.router:external) }}</td>
+        <td>{{ '%-28s' | format(net['router:external']) }}</td>
         <td>{{ '%-14s' | format(net.subnets | length) }}</td>
         <td>{{ '%-14s' | format(net.mtu) }}</td>
         <td>{{ '%-14s' | format(net.status | capitalize) }}</td>
@@ -31,7 +31,7 @@
 </div>
 </div>
 
-<h3>Azure Subnet Information</h3>
+<h3>OpenStack Subnet Information</h3>
 {% for vnet in __azure_vnet_info.virtualnetworks %}
 <div id="accordion">
 <div>
