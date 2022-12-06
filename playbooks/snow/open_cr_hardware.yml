@@ -11,8 +11,7 @@
         short_description: >
           Apply "{{ awx_webhook_event_type }}" from SCM repo "{{ awx_webhook_payload.repository.url }}"
         long_description: |
-          The user "{{ awx_webhook_payload.pusher.name }}" generated a "{{ awx_webhook_event_type }}" event on the SCM repo \
-          found at "{{ awx_webhook_payload.repository.url }}".
+          The user "{{ awx_webhook_payload.pusher.name }}" generated a "{{ awx_webhook_event_type }}" event on the SCM repo found at "{{ awx_webhook_payload.repository.url }}".
 
           The head commit was made by "{{ awx_webhook_payload.head_commit.author.name }}" at "{{ awx_webhook_payload.head_commit.timestamp }}".
 
