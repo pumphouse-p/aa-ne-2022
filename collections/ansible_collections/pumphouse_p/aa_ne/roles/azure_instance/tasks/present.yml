@@ -21,7 +21,7 @@
 - name: "Create instance"
   azure.azcollection.azure_rm_virtualmachine:
     resource_group: "{{ azure_resourcegroup_name }}"
-    name: "{{ '%s-%d' | format(azure_instance_name, idx) }}"
+    name: "{{ '%s-%02d' | format(azure_instance_name, idx) }}"
     vm_size: "{{ azure_instance_size }}"
     virtual_network_name: "{{ azure_instance_network_name }}"
     subnet_name: "{{ azure_instance_subnet_name | default(omit) }}"
