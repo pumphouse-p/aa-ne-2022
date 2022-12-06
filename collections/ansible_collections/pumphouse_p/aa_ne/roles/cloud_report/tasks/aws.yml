@@ -11,6 +11,8 @@
     region: "{{ aws_region }}"
     filters:
       tag:purpose: "aa_ne"
+      instance-state-name:
+        - "running"
   register: __instance_info
 
 - name: "Retrieve IGW information"
