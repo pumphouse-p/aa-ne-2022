@@ -7,24 +7,24 @@
     openstack_key_name: "aa_ne"
     openstack_network_name: "aa_ne"
 
-  # roles:
-  #   - name: pumphouse_p.aa_ne.openstack_key
+  roles:
+    - name: pumphouse_p.aa_ne.openstack_key
 
-  #   - name: pumphouse_p.aa_ne.openstack_net
-  #     vars:
-  #       openstack_networks:
-  #         - name: "{{ openstack_network_name }}"
-  #           is_external: false
-  #       openstack_subnets:
-  #         - name: "aa_ne_sub00"
-  #           network_name: "{{ openstack_network_name }}"
-  #           cidr: "192.168.222.0/24"
+    - name: pumphouse_p.aa_ne.openstack_net
+      vars:
+        openstack_networks:
+          - name: "{{ openstack_network_name }}"
+            is_external: false
+        openstack_subnets:
+          - name: "aa_ne_sub00"
+            network_name: "{{ openstack_network_name }}"
+            cidr: "192.168.222.0/24"
 
-  #   - name: pumphouse_p.aa_ne.openstack_instance
-  #     vars:
-  #       openstack_instance_name: "test"
-  #       openstack_instance_image: "cirros"
-  #       openstack_instance_network: "{{ openstack_network_name }}"
-  #       openstack_instance_key_name: "{{ openstack_key_name }}"
-  #       openstack_instance_flavor: "m1.tiny"
-  #       openstack_instance_count: 2
+    - name: pumphouse_p.aa_ne.openstack_instance
+      vars:
+        openstack_instance_name: "test"
+        openstack_instance_image: "cirros"
+        openstack_instance_network: "{{ openstack_network_name }}"
+        openstack_instance_key_name: "{{ openstack_key_name }}"
+        openstack_instance_flavor: "m1.tiny"
+        openstack_instance_count: 2
